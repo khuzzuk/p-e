@@ -4,24 +4,29 @@ import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import pl.projectE.ui.CentralScreen;
+import pl.projectE.ui.CirclePane;
 import pl.projectE.ui.MainContainer;
 
-public class MainWindow extends Application implements MainContainer, CentralScreen {
+public class MainWindow extends Application implements MainContainer {
     public static void main(String[] args) {
         launch(args);
     }
     public void start(Stage primaryStage) throws Exception {
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         Rectangle2D screen = Screen.getPrimary().getVisualBounds();
         AnchorPane pane = new AnchorPane();
-        Scene scene = new Scene(pane, screen.getWidth(), screen.getHeight(), CentralScreen.BACKGROUND_COLOR);
+        pane.setBackground(new Background(new BackgroundFill(CentralScreen.BACKGROUND_COLOR,null,null)));
+        Scene scene = new Scene(pane, screen.getWidth(), screen.getHeight());
         addBasicButtons(pane);
-        addCentralRing(pane);
-        addButton(pane, 90, 105, Color.ALICEBLUE);
-        primaryStage.setIconified(false);
+        CirclePane circlePane = new CirclePane(pane);
+        circlePane.addButton(90, 105, Color.GRAY);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

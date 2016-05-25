@@ -9,6 +9,7 @@ import javafx.scene.shape.Shape;
 import pl.projectE.geometry.SemiRingSection;
 import pl.projectE.ui.transitions.Transitional;
 
+@SuppressWarnings("restriction")
 public class SemiRingButton implements Transitional {
     private double centerX, centerY, radius, innerRadius;
     private int startingAngle, endingAngle;

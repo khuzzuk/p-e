@@ -18,7 +18,7 @@ public abstract class CentralScreen {
     public static final Color BACKGROUND_COLOR = new Color(0.6,0.6,0.6,1);
     public static final Color SHADOW_COLOR = new Color(0.3,0.3,0.3,1);
     public static final double OUTER_RADIUS_DIVISOR = 2.3;
-    public static final double INNER_RADIUS_DIVIDER = 3.2;
+    public static final double INNER_RADIUS_DIVISOR = 3.2;
     public static final int ANGLE_BORDER = 2;
     protected Shape ring;
     protected SimpleDoubleProperty centerX;
@@ -36,7 +36,7 @@ public abstract class CentralScreen {
         double height = pane.getHeight();
         double min = Math.min(width,height);
         radius = min / OUTER_RADIUS_DIVISOR;
-        innerRadius = min / INNER_RADIUS_DIVIDER;
+        innerRadius = min / INNER_RADIUS_DIVISOR;
         ring = ShapeFactory.semiRing().setCenterX(width/2)
                 .setCenterY(height/2)
                 .setRadius(radius)
@@ -80,7 +80,7 @@ public abstract class CentralScreen {
                     .setCenterX(width/2)
                     .setCenterY(height/2)
                     .setRadius(min/OUTER_RADIUS_DIVISOR)
-                    .setInnerRadius(min/INNER_RADIUS_DIVIDER)
+                    .setInnerRadius(min/INNER_RADIUS_DIVISOR)
                     .setStartingAngle(startingAngle-ANGLE_BORDER)
                     .setEndingAngle(endingAngle+ANGLE_BORDER).buildButton(BACK_COLOR);
     }

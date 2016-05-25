@@ -11,6 +11,7 @@ import javafx.scene.shape.*;
 import pl.projectE.geometry.ShapeFactory;
 import pl.projectE.ui.buttons.SemiRingButton;
 
+@SuppressWarnings("restriction")
 public abstract class CentralScreen {
     public static final Color BACK_COLOR = new Color(0.5,0.5,0.5,1);
     public static final Color FRONT_COLOR = new Color(0.85,0.85,0.85,1);

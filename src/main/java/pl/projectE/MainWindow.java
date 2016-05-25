@@ -12,22 +12,31 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.projectE.ui.CentralScreen;
 import pl.projectE.ui.CirclePane;
-import pl.projectE.ui.MainContainer;
+import pl.projectE.ui.annot.BasicContainer;
 
-public class MainWindow extends Application implements MainContainer {
+@SuppressWarnings("restriction")
+@BasicContainer
+public class MainWindow extends Application {
     public static void main(String[] args) {
         launch(args);
     }
     public void start(Stage primaryStage) throws Exception {
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        Rectangle2D screen = Screen.getPrimary().getVisualBounds();
-        AnchorPane pane = new AnchorPane();
-        pane.setBackground(new Background(new BackgroundFill(CentralScreen.BACKGROUND_COLOR,null,null)));
-        Scene scene = new Scene(pane, screen.getWidth(), screen.getHeight());
-        addBasicButtons(pane);
-        CirclePane circlePane = new CirclePane(pane);
-        circlePane.addButton(90, 105, Color.GRAY);
+    	AnchorPane pane = setupPane();
+        Scene scene = setupScene(pane);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+    private Scene setupScene(AnchorPane pane){
+        Rectangle2D screen = Screen.getPrimary().getVisualBounds();
+        Scene scene = new Scene(pane, screen.getWidth(), screen.getHeight());
+        CirclePane circlePane = new CirclePane(pane);
+        circlePane.addButton(90, 105, Color.GRAY);
+        return scene;
+    }
+    private AnchorPane setupPane(){
+    	AnchorPane pane = new AnchorPane();
+        pane.setBackground(new Background(new BackgroundFill(CentralScreen.BACKGROUND_COLOR,null,null)));
+    	return pane;
     }
 }

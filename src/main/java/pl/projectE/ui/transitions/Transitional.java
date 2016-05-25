@@ -5,8 +5,9 @@ import javafx.scene.Node;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
+@SuppressWarnings("restriction")
 public interface Transitional {
-    Duration BASIC_DURATION = new Duration(300);
+	Duration BASIC_DURATION = new Duration(300);
     default void applyValuesToTransition(PathTransition transition, Node node, Shape path){
         transition.setInterpolator(Interpolator.EASE_OUT);
         transition.setDuration(BASIC_DURATION);

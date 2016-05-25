@@ -2,15 +2,18 @@ package pl.projectE.ui.aspects;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import pl.projectE.ui.annot.BasicContainer;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
 import pl.projectE.ui.buttons.ExitButton;
 import pl.projectE.ui.buttons.MinimizeButton;
 
 @SuppressWarnings("restriction")
-public aspect BasicMenuAspect {
+@Aspect
+public class BasicMenuAspect {
 	private final double BUTTON_SCALE = 0.02;
-	after(AnchorPane pane):
-			call (* *setup*(AnchorPane)) && args(pane) && @within(BasicContainer) {
+
+	@After("execution(* *setup*(javafx.scene.layout.AnchorPane)) && args(pane) && @within(pl.projectE.ui.annot.BasicContainer)")
+	public void addBasicButtons(AnchorPane pane){
 		double maxX = pane.getWidth();
 		double maxY = pane.getHeight();
 		double max = Math.max(maxX, maxY);
@@ -29,5 +32,4 @@ public aspect BasicMenuAspect {
 
 		pane.getChildren().addAll(exitButton, minimizeButton);
 	}
-
 }

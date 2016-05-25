@@ -7,10 +7,12 @@ import javafx.animation.RotateTransition;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import pl.projectE.geometry.SemiRingSection;
+import pl.projectE.ui.annot.Transitionable;
 import pl.projectE.ui.transitions.Transitional;
 
 @SuppressWarnings("restriction")
-public class SemiRingButton implements Transitional {
+@Transitionable
+public class SemiRingButton {
     private double centerX, centerY, radius, innerRadius;
     private int startingAngle, endingAngle;
     private Color color;

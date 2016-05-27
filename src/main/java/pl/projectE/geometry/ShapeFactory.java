@@ -77,7 +77,7 @@ public class ShapeFactory {
         }
 
         public SemiRingButton buildButton(Color color){
-            return new SemiRingButton(centerX,centerY,radius,innerRadius,startingAngle,endingAngle, color,
+            return new SemiRingButton(color,
                     new SemiRingSection(centerX,centerY,radius,innerRadius,startingAngle,endingAngle));
         }
     }

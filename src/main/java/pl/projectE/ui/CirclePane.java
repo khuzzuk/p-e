@@ -3,7 +3,7 @@ package pl.projectE.ui;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
-public class CirclePane extends CentralScreen {
+class CirclePane extends CentralScreen {
 
     public CirclePane(AnchorPane pane) {
         super(pane);

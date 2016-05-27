@@ -1,4 +1,4 @@
-package pl.projectE;
+package pl.projectE.ui;
 
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
@@ -10,8 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import pl.projectE.ui.CentralScreen;
-import pl.projectE.ui.CirclePane;
 import pl.projectE.ui.annot.BasicContainer;
 
 @SuppressWarnings("restriction")

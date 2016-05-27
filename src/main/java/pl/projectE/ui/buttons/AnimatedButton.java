@@ -4,8 +4,9 @@ import javafx.animation.ParallelTransition;
 import javafx.scene.shape.Shape;
 
 public abstract class AnimatedButton {
-    protected ParallelTransition transition;
+    ParallelTransition transition;
     protected Shape shape;
+
     protected void setTransition(ParallelTransition newTransition){
         transition = newTransition;
     }

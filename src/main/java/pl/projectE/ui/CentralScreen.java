@@ -12,26 +12,26 @@ import pl.projectE.geometry.ShapeFactory;
 import pl.projectE.ui.buttons.SemiRingButton;
 
 @SuppressWarnings("restriction")
-public abstract class CentralScreen {
-    public static final Color BACK_COLOR = new Color(0.5,0.5,0.5,1);
-    public static final Color FRONT_COLOR = new Color(0.85,0.85,0.85,1);
+abstract class CentralScreen {
+    private static final Color BACK_COLOR = new Color(0.5,0.5,0.5,1);
+    private static final Color FRONT_COLOR = new Color(0.85,0.85,0.85,1);
     public static final Color BACKGROUND_COLOR = new Color(0.6,0.6,0.6,1);
-    public static final Color SHADOW_COLOR = new Color(0.3,0.3,0.3,1);
-    public static final double OUTER_RADIUS_DIVISOR = 2.3;
-    public static final double INNER_RADIUS_DIVISOR = 3.2;
-    public static final int ANGLE_BORDER = 2;
-    protected Shape ring;
+    private static final Color SHADOW_COLOR = new Color(0.3,0.3,0.3,1);
+    private static final double OUTER_RADIUS_DIVISOR = 2.3;
+    private static final double INNER_RADIUS_DIVISOR = 3.2;
+    private static final int ANGLE_BORDER = 2;
+    Shape ring;
     protected SimpleDoubleProperty centerX;
     protected SimpleDoubleProperty centerY;
-    protected final AnchorPane pane;
+    final AnchorPane pane;
     private double radius;
     private double innerRadius;
 
-    public CentralScreen(AnchorPane pane) {
+    CentralScreen(AnchorPane pane) {
         this.pane = pane;
     }
 
-    protected void addCentralRing(){
+    void addCentralRing(){
         double width = pane.getWidth();
         double height = pane.getHeight();
         double min = Math.min(width,height);
@@ -50,7 +50,7 @@ public abstract class CentralScreen {
         pane.getChildren().addAll(ring);
     }
 
-    protected void addButton(AnchorPane pane, int startingAngle, int endingAngle, Color color){
+    void addButton(AnchorPane pane, int startingAngle, int endingAngle, Color color){
         double width = pane.getWidth();
         double height = pane.getHeight();
         double min = Math.min(width,height);
@@ -60,6 +60,8 @@ public abstract class CentralScreen {
         Shape path;
         path = createEllipsePath(startingAngle+(endingAngle-startingAngle)/2, 80);
         button.setAnimationBehavior(path);
+        background.setAnimationBehavior(path);
+        button.setParentAnimationInvoker(background);
         pane.getChildren().addAll(background.getButton(), button.getButton());
     }
 

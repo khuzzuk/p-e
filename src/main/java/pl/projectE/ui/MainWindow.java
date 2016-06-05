@@ -29,7 +29,7 @@ public class MainWindow extends Application {
         Rectangle2D screen = Screen.getPrimary().getVisualBounds();
         Scene scene = new Scene(pane, screen.getWidth(), screen.getHeight());
         CirclePane circlePane = new CirclePane(pane);
-        circlePane.addButton(90, 105, Color.GRAY);
+        circlePane.addButton(145, 160, Color.GRAY);
         return scene;
     }
     private AnchorPane setupPane(){

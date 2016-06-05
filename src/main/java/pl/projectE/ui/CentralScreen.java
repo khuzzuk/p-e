@@ -66,12 +66,7 @@ abstract class CentralScreen {
     }
 
     private Arc createEllipsePath(int startingPoint, int endingPoint) {
-        ArcTo arcTo = new ArcTo();
-        arcTo.setX(pane.getWidth()/2);
-        arcTo.setY(pane.getHeight()/2);
-        arcTo.setRadiusX(radius);
-        arcTo.setRadiusY(radius);
-        double pathRadius = (radius+innerRadius)/2;
+        double pathRadius = (radius+innerRadius)/2+3;
         Arc outerCircle = new Arc(pane.getWidth()/2,pane.getHeight()/2,pathRadius,pathRadius,startingPoint,endingPoint);
         outerCircle.setType(ArcType.OPEN);
         return outerCircle;

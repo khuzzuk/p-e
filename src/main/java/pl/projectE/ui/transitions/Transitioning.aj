@@ -18,7 +18,7 @@ privileged public aspect Transitioning {
         PathTransition pathTransition = new PathTransition();
         applyValuesToTransition(pathTransition, element.shape, path);
         RotateTransition rotateTransition = new RotateTransition();
-        applyValuesToTransition(rotateTransition, element.shape, -78);
+        applyValuesToTransition(rotateTransition, element.shape, -80);
         element.transition = combineTransitions(pathTransition, rotateTransition);
     }
     private void applyValuesToTransition(javafx.animation.PathTransition transition, Node node, Shape path) {

@@ -7,8 +7,16 @@ public abstract class AnimatedButton {
     ParallelTransition transition;
     protected Shape shape;
 
-    protected void setTransition(ParallelTransition newTransition){
+    public void setTransition(ParallelTransition newTransition){
         transition = newTransition;
     }
     public abstract void setAnimationBehavior(Shape path);
+
+    public Shape getShape() {
+        return shape;
+    }
+
+    public ParallelTransition getTransition() {
+        return transition;
+    }
 }

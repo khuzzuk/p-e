@@ -22,6 +22,7 @@
         <assertj.version>3.4.1</assertj.version>
         <mockito.version>1.10.19</mockito.version>
         <testng.version>6.9.10</testng.version>
+        <aspectj-plugin.version>1.8</aspectj-plugin.version>
     </properties>
 
     <build>
@@ -61,7 +62,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
-                <version>1.8</version>
+                <version>${aspectj-plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -69,9 +70,9 @@
                             <goal>test-compile</goal>
                         </goals>
                         <configuration>
-                            <complianceLevel>1.8</complianceLevel>
-                            <source>1.8</source>
-                            <target>1.8</target>
+                            <complianceLevel>${java.version}</complianceLevel>
+                            <source>${java.version}</source>
+                            <target>${java.version}</target>
                         </configuration>
                     </execution>
                 </executions>
@@ -88,9 +89,12 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <complianceLevel>1.8</complianceLevel>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <forceAjcCompile>true</forceAjcCompile>
+                    <showWeaveInfo/>
+                    <sources/>
+                    <complianceLevel>${java.version}</complianceLevel>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
         </plugins>

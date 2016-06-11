@@ -1,20 +1,15 @@
 package pl.projectE.loaders;
 
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@NoArgsConstructor
 public class GameStaticsLoader {
 
     private List<String> countries;
 
-    @Setter
     private FileSet fileSet;
 
 

@@ -6,7 +6,11 @@
 
     <groupId>p-e</groupId>
     <artifactId>p-e</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1</version>
+    <modules>
+        <module>GeneratorProcessingMiddleware</module>
+    </modules>
 
     <properties>
         <!--JAVA-->
@@ -16,8 +20,6 @@
         <maven-assembly-plugin-version>2.6</maven-assembly-plugin-version>
         <!--AspectJ-->
         <aspectj.version>1.8.9</aspectj.version>
-        <!--DOP-->
-        <lombok.version>1.16.8</lombok.version>
         <!--TESTS-->
         <assertj.version>3.4.1</assertj.version>
         <mockito.version>1.10.19</mockito.version>
@@ -118,14 +120,6 @@
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectj.version}</version>
         </dependency>
-
-        <!--DOP-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-        </dependency>
-
 
         <!--TESTS-->
         <dependency>

@@ -1,4 +1,4 @@
-package pl.projectE.geometry;
+package pl.projectE.ui.geometry;
 
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;

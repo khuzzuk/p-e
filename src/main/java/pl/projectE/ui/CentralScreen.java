@@ -8,7 +8,7 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.*;
-import pl.projectE.geometry.ShapeFactory;
+import pl.projectE.ui.geometry.ShapeFactory;
 import pl.projectE.ui.buttons.SemiRingButton;
 
 @SuppressWarnings("restriction")

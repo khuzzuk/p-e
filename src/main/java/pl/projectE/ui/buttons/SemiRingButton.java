@@ -3,7 +3,7 @@ package pl.projectE.ui.buttons;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
-import pl.projectE.geometry.SemiRingSection;
+import pl.projectE.ui.geometry.SemiRingSection;
 import pl.projectE.ui.annot.TransitionCall;
 
 @SuppressWarnings("restriction")

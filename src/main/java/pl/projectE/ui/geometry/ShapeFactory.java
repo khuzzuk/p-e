@@ -1,4 +1,4 @@
-package pl.projectE.geometry;
+package pl.projectE.ui.geometry;
 
 import javafx.scene.paint.Color;
 import pl.projectE.ui.buttons.SemiRingButton;

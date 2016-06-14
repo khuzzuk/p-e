@@ -8,9 +8,6 @@
     <artifactId>p-e</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1</version>
-    <modules>
-        <module>GeneratorProcessingMiddleware</module>
-    </modules>
 
     <properties>
         <!--JAVA-->

@@ -13,7 +13,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-@Privileged
 public class GameStaticsLoaderTest {
     private final int numberOfCountries = 2;
     @Mock
@@ -34,6 +33,7 @@ public class GameStaticsLoaderTest {
     }
 
     @Test(groups = "fast")
+    @Privileged
     public void checkLoadingLines() throws Exception {
         GameStaticsLoader loader = new GameStaticsLoader();
         loader.fileSet = fileSet;

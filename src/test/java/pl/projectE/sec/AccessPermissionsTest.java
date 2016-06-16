@@ -4,7 +4,6 @@ import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Privileged
 public class AccessPermissionsTest {
     @Test(groups = "fast", expectedExceptions = IllegalAccessError.class)
     public void checkIllegalAccess() throws Exception {
@@ -12,13 +11,8 @@ public class AccessPermissionsTest {
         limitedClass.myField = 1;
     }
 
-    @Test(groups = "fast", expectedExceptions = IllegalAccessError.class)
-    public void checkAccessForWrongClass() throws Exception {
-        LimitedClass limitedClass = new LimitedClass();
-        limitedClass.myField = 1;
-    }
-
     @Test(groups = "fast")
+    @Privileged
     public void checkGrantedAccess() throws Exception {
         LimitedClass limitedClass = new LimitedClass();
         limitedClass.myField = 1;
@@ -29,6 +23,7 @@ public class AccessPermissionsTest {
         benchmark();
     }
 
+    @Privileged
     private static void benchmark() {
         long startTime, endTime;
         LimitedClass limitedClass = new LimitedClass();
@@ -39,7 +34,6 @@ public class AccessPermissionsTest {
         endTime = System.nanoTime();
         System.out.println("operation took " + (endTime - startTime) / 1000000);
 
-        System.out.println(limitedClass.myField);
 
         startTime = System.nanoTime();
         for (int y = 0; y < 2; y++)

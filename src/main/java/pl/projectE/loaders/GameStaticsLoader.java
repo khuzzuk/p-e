@@ -1,7 +1,6 @@
 package pl.projectE.loaders;
 
 import pl.projectE.sec.LimitedAccess;
-import pl.projectE.sec.Privileged;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Privileged
 public class GameStaticsLoader {
 
     private List<String> countries;

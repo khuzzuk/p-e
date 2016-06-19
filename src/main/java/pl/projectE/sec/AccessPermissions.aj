@@ -9,7 +9,7 @@ public aspect AccessPermissions {
 
     pointcut permissionCheck(Privileged access): @within(access);
 
-    before(): noPermission() && fieldAccess() {
+    before(): fieldAccess() && noPermission() {
         throw new IllegalAccessError("not permitted to access field");
     }
 }

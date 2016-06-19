@@ -135,11 +135,6 @@
             <artifactId>mockito-all</artifactId>
             <version>${mockito.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.google.caliper</groupId>
-            <artifactId>caliper</artifactId>
-            <version>${caliper.version}</version>
-        </dependency>
     </dependencies>
 
 </project>

@@ -1,54 +1,54 @@
 package pl.projectE.sec;
 
-import com.google.caliper.BeforeExperiment;
-import com.google.caliper.Param;
-
-import java.util.function.Function;
-
 public class AccessPermissionsBenchmark {
-    private LimitedClass limitedClass;
-    @Param({"100000", "1000000"})
-    private int capacity;
-
-    @Param({"AccessPermissions::testLimited"})
-    private Function<LimitedClass, Long> method;
-
-    @BeforeExperiment
-    private void setup() {
-        limitedClass = new LimitedClass();
+    public static void main(String[] args) {
+        new AccessPermissionsBenchmark().benchmark();
     }
-
 
     private void benchmark() {
-
+        LimitedClass limitedClass = new LimitedClass();
+        long start = System.currentTimeMillis();
+        testLimited(limitedClass);
+        long end = System.currentTimeMillis();
+        System.out.println("Field with limited access: "+(end-start));
+        start = System.currentTimeMillis();
+        testNormal(limitedClass);
+        end = System.currentTimeMillis();
+        System.out.println("Field with public access: "+(end-start));
+        start = System.currentTimeMillis();
+        testWithSetter(limitedClass);
+        end = System.currentTimeMillis();
+        System.out.println("Field with setter access: "+(end-start));
+        start = System.currentTimeMillis();
+        testLimited(limitedClass);
+        end = System.currentTimeMillis();
+        System.out.println("Field with limited access: "+(end-start));
     }
 
-    private Long testLimited(LimitedClass limitedClass){
-        for (int x = 0; x<capacity; x++) {
+    @Privileged
+    private void testLimited(LimitedClass limitedClass){
+        for (long x = 0; x<Integer.MAX_VALUE; x++) {
             limitedClass.limited = x;
         }
-        return 1L;
     }
-    private Long testNormal(LimitedClass limitedClass){
-        for (int x = 0; x<capacity; x++) {
+    private void testNormal(LimitedClass limitedClass){
+        for (long x = 0; x<Integer.MAX_VALUE; x++) {
             limitedClass.normal = x;
         }
-        return 1L;
     }
-    private Long testWithSetter(LimitedClass limitedClass){
-        for (int x = 0; x<capacity; x++) {
+    private void testWithSetter(LimitedClass limitedClass){
+        for (long x = 0; x<Integer.MAX_VALUE; x++) {
             limitedClass.setWithSetter(x);
         }
-        return 1L;
     }
 
-    private static class LimitedClass {
+    static class LimitedClass {
         @LimitedAccess
-        private int limited;
-        private int normal;
-        private int withSetter;
+        long limited;
+        long normal;
+        long withSetter;
 
-        public void setWithSetter(int withSetter) {
+        public void setWithSetter(long withSetter) {
             this.withSetter = withSetter;
         }
     }

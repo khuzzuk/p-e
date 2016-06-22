@@ -35,8 +35,7 @@ public class GameStaticsLoaderTest {
     @Test(groups = "fast")
     @Privileged
     public void checkLoadingLines() throws Exception {
-        GameStaticsLoader loader = new GameStaticsLoader();
-        loader.fileSet = fileSet;
+        GameStaticsLoader loader = new GameStaticsLoader(fileSet);
         List<String> strings = loader.loadCountries();
         assertThat(strings.size()).isEqualTo(numberOfCountries);
     }

@@ -1,7 +1,5 @@
 package pl.projectE.loaders;
 
-import pl.projectE.sec.LimitedAccess;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,9 +10,11 @@ public class GameStaticsLoader {
 
     private List<String> countries;
 
-    @LimitedAccess
-    FileSet fileSet;
+    private FileSet fileSet;
 
+    public GameStaticsLoader(FileSet fileSet) {
+        this.fileSet = fileSet;
+    }
 
     public List<String> loadCountries(){
         if (countries==null) {

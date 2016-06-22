@@ -7,9 +7,17 @@ public aspect AccessPermissions {
 
     pointcut noPermission(): !@withincode(pl.projectE.sec.Privileged);
 
+    pointcut synchronizedWrite(): set(@pl.projectE.sec.SynchronizedAccess * *.*);
+
     pointcut permissionCheck(Privileged access): @within(access);
 
     before(): fieldAccess() && noPermission() {
         throw new IllegalAccessError("not permitted to access field");
+    }
+
+    int around(int number): synchronizedWrite() && args(number) {
+        synchronized (thisJoinPoint) {
+            return proceed(number);
+        }
     }
 }

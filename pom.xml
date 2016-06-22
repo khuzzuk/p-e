@@ -17,12 +17,13 @@
         <maven-assembly-plugin-version>2.6</maven-assembly-plugin-version>
         <!--AspectJ-->
         <aspectj.version>1.8.9</aspectj.version>
+        <!--UTILS-->
+        <commons-collections4.version>4.1</commons-collections4.version>
         <!--TESTS-->
         <assertj.version>3.4.1</assertj.version>
         <mockito.version>1.10.19</mockito.version>
         <testng.version>6.9.10</testng.version>
         <aspectj-plugin.version>1.8</aspectj-plugin.version>
-        <caliper.version>1.0-beta-2</caliper.version>
     </properties>
 
     <build>
@@ -117,6 +118,13 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectj.version}</version>
+        </dependency>
+
+        <!--UTILS-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${commons-collections4.version}</version>
         </dependency>
 
         <!--TESTS-->

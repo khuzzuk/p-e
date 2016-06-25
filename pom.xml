@@ -24,6 +24,7 @@
         <mockito.version>1.10.19</mockito.version>
         <testng.version>6.9.10</testng.version>
         <aspectj-plugin.version>1.8</aspectj-plugin.version>
+        <validation-api.version>1.0.0.GA</validation-api.version>
     </properties>
 
     <build>
@@ -125,6 +126,18 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
             <version>${commons-collections4.version}</version>
+        </dependency>
+
+        <!--JavaEE-->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>${validation-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
         </dependency>
 
         <!--TESTS-->

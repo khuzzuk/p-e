@@ -1,4 +1,4 @@
-package pl.projectE.inject;
+package pl.projectE.inject.qualifiers;
 
 import javax.inject.Qualifier;
 import java.lang.annotation.*;

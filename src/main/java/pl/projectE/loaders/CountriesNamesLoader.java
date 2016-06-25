@@ -1,10 +1,8 @@
 package pl.projectE.loaders;
 
-import com.sun.istack.internal.Nullable;
 import pl.projectE.inject.Component;
-import pl.projectE.inject.CountriesNames;
+import pl.projectE.inject.qualifiers.CountriesNames;
 
-import javax.inject.Inject;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;

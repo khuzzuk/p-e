@@ -1,11 +1,14 @@
-package pl.projectE.inject;
+package pl.projectE.inject.qualifiers;
 
+import javax.inject.Qualifier;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+@Qualifier
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface PostConstruct {
+@Target(ElementType.FIELD)
+public @interface Implementation {
+    Class<?> specifiedClass() default Object.class;
 }

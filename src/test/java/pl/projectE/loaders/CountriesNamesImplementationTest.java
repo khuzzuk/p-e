@@ -6,7 +6,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CountriesNamesLoaderTest {
+public class CountriesNamesImplementationTest {
     private final int numberOfCountries = 54;
 
     @Test(groups = "integration")

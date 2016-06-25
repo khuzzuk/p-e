@@ -5,6 +5,7 @@ import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
+import pl.projectE.inject.qualifiers.Implementation;
 
 import javax.inject.Inject;
 import java.lang.reflect.Field;
@@ -45,8 +46,11 @@ public class Injector {
     @Nullable
     private Object instantiateNewClass(Field field) {
         try {
-            Class<?> declaredClass = field.getType();
-            return declaredClass.newInstance();
+            Class<?> fieldType = field.getType();
+            if(fieldType.isInterface()) {
+                fieldType = field.getAnnotation(Implementation.class).specifiedClass();
+            }
+            return fieldType.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }

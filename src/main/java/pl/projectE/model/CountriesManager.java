@@ -13,6 +13,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component
+@CountriesNames
 public class CountriesManager {
     private Map<Country, Object> countries;
     @Inject

@@ -2,7 +2,10 @@ package pl.projectE.loaders;
 
 import pl.projectE.inject.Component;
 import pl.projectE.inject.qualifiers.CountriesNames;
+import pl.projectE.inject.qualifiers.Implementation;
 
+import javax.inject.Inject;
+import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -14,7 +17,8 @@ import java.util.List;
 public class CountriesNamesLoader implements ResourceLoader {
 
     private List<String> countries;
-
+    @Inject
+    @Implementation(specifiedClass = StartingCountryListLinker.class)
     private FileLinker fileLinker;
 
     public CountriesNamesLoader() {}
@@ -26,12 +30,12 @@ public class CountriesNamesLoader implements ResourceLoader {
     @Override
     public List<String> loadResource(){
         if (countries==null) {
-            countries = loadResource(fileLinker !=null ? fileLinker : new StartingCountryListLinker());
+            countries = loadResource(fileLinker);
         }
         return countries;
     }
 
-    private List<String> loadResource(FileLinker fileLinker) {
+    private List<String> loadResource(@NotNull FileLinker fileLinker) {
         List<String> countries = new ArrayList<>();
         try {
             countries = Files.readAllLines(fileLinker.getResource(), StandardCharsets.UTF_8);

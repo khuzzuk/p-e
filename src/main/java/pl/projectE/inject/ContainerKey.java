@@ -1,5 +1,6 @@
 package pl.projectE.inject;
 
+import javax.inject.Named;
 import javax.inject.Qualifier;
 import javax.validation.constraints.NotNull;
 import java.lang.annotation.Annotation;
@@ -9,30 +10,48 @@ import java.util.List;
 
 class ContainerKey {
     private Class<?> componentClass;
-    private List<Qualifier> qualifiers = new ArrayList<>();
+    private List<String> qualifiers = new ArrayList<>();
 
     ContainerKey(@NotNull Class<?> componentClass) {
         this.componentClass = componentClass;
     }
 
-    void addQualifier(@NotNull Qualifier qualifier) {
-        qualifiers.add(qualifier);
+    void addQualifier(@NotNull Class<? extends Annotation> qualifier) {
+        qualifiers.add(qualifier.toString());
+    }
+    void addName(@NotNull Named name) {
+        qualifiers.add(name.value());
     }
 
-    static ContainerKey getKey(Class<?> annotatedClass){
-        return addQualifiers(new ContainerKey(annotatedClass), annotatedClass.getAnnotations());
+    static ContainerKey getKey(Class<?> annotatedClass) {
+        ContainerKey key = new ContainerKey(annotatedClass);
+        return key.addQualifiers(annotatedClass.getAnnotations());
     }
 
     static ContainerKey getKey(Field field) {
-        return addQualifiers(new ContainerKey(field.getType()), field.getDeclaredAnnotations());
+        ContainerKey key = new ContainerKey(field.getType());
+        key.addQualifiers(field.getDeclaredAnnotations());
+        return key;
     }
 
-    private static ContainerKey addQualifiers(final ContainerKey key, Annotation[] annotations) {
+    private ContainerKey addQualifiers(Annotation[] annotations) {
         for (Annotation a : annotations) {
-            if (a instanceof Qualifier)
-                key.addQualifier((Qualifier) a);
+            if (a instanceof Named)
+                addName((Named) a);
+            else addQualifiedAnnotations(a);
         }
-        return key;
+        return this;
+    }
+
+    private void addQualifiedAnnotations(Annotation annotation) {
+        if (hasQualifier(annotation.annotationType().getDeclaredAnnotations()))
+            addQualifier(annotation.annotationType());
+    }
+
+    private boolean hasQualifier(Annotation[] annotations) {
+        for (Annotation a : annotations)
+            if (a instanceof Qualifier) return true;
+        return false;
     }
 
     @Override

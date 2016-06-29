@@ -5,6 +5,7 @@ import javax.inject.Qualifier;
 import javax.validation.constraints.NotNull;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,12 @@ class ContainerKey {
     static ContainerKey getKey(Field field) {
         ContainerKey key = new ContainerKey(field.getType());
         key.addQualifiers(field.getDeclaredAnnotations());
+        return key;
+    }
+
+    static ContainerKey getKey(Method method) {
+        ContainerKey key = new ContainerKey(method.getReturnType());
+        key.addQualifiers(method.getDeclaredAnnotations());
         return key;
     }
 

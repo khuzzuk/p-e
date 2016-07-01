@@ -15,6 +15,7 @@ import java.util.Map;
 
 @SuppressWarnings("WeakerAccess")
 @Aspect
+@pl.projectE.sec.Injector
 public class Injector {
     private final Map<ContainerKey, Object> container = new HashedMap<>();
     private final PostConstructCaller caller = new PostConstructCaller();

@@ -1,4 +1,4 @@
-package pl.projectE.inject;
+package pl.projectE.sec;
 
 import java.lang.annotation.*;
 

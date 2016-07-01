@@ -4,6 +4,7 @@ import org.assertj.core.util.VisibleForTesting;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pl.projectE.sec.FinalAfterInject;
 
 import javax.annotation.*;
 import javax.inject.Inject;

@@ -11,7 +11,7 @@ public class FinalsCheckingAspect {
         System.out.println(thisJoinPoint.getSignature().getClass());
         throw new FinalFieldSettingException();
     }
-    @Before("set(@pl.projectE.inject.FinalAfterInject * *.*) && !cflow(within(pl.projectE.inject.Injector))")
+    @Before("set(@pl.projectE.sec.FinalAfterInject * *.*) && !cflow(@within(pl.projectE.sec.Injector))")
     public void check(JoinPoint thisJoinPoint){
         throw new FinalFieldSettingException();
     }

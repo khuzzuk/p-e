@@ -22,34 +22,34 @@ public class InjectorTest {
     }
 
     @Test(groups = "fast")
-    public void checkInjectionForComponent() throws Exception {
+    public void checkInjectionForComponent() {
         Assert.assertNotNull(injectedClass.injectedString);
     }
 
     @Test(groups = "fast")
-    public void checkContainerSingletonPolicy() throws Exception {
+    public void checkContainerSingletonPolicy() {
         InjectedClass otherInjectedClass = new InjectedClass();
         assertEquals(injectedClass.injectedString, otherInjectedClass.injectedString);
     }
 
     @Test(groups = "fast")
-    public void checkPostConstructExecution() throws Exception {
+    public void checkPostConstructExecution() {
         assertTrue(injectedClass.postConstructExecuted);
     }
 
     @Test(expectedExceptions = InvocationWithWrongParameterException.class, groups = "fast")
-    public void throwExceptionWithMethodWithParameters() throws Exception {
+    public void throwExceptionWithMethodWithParameters() {
         new WrongInjectedClass();
     }
 
     @Test(groups = "fast")
-    public void checkRecursiveInjection() throws Exception {
+    public void checkRecursiveInjection() {
         RecursiveInjectedClass recursiveInjectedClass = new RecursiveInjectedClass();
         assertEquals(recursiveInjectedClass.injectedClass.injectedClass, injectedClass);
     }
 
     @Test(groups = "fast")
-    public void checkInjectingComponentFromMethod() throws Exception {
+    public void checkInjectingComponentFromMethod() {
         ClassWithComponentMethod creator = new ClassWithComponentMethod();
         InjectedClass injectedClass = creator.createObject();
         ClassWithNamedInject namedInject = new ClassWithNamedInject();
@@ -57,7 +57,7 @@ public class InjectorTest {
     }
 
     @Test(groups = "fast")
-    public void checkAlwaysNewPolicy() throws Exception {
+    public void checkAlwaysNewPolicy() {
         AlwaysNewClass alwaysNewClass = new AlwaysNewClass();
         assertNotEquals(alwaysNewClass.injectedClass, injectedClass);
     }
@@ -67,6 +67,7 @@ public class InjectorTest {
     @SuppressWarnings("WeakerAccess")
     static class InjectedClass {
         @Inject
+        @FinalAfterInject
         private String injectedString;
         boolean postConstructExecuted = false;
 

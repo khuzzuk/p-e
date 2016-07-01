@@ -16,7 +16,7 @@ public aspect AccessPermissions {
     }
 
     int around(int number): synchronizedWrite() && args(number) {
-        synchronized (thisJoinPoint) {
+        synchronized (this) {
             return proceed(number);
         }
     }

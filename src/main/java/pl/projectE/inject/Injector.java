@@ -13,6 +13,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+@SuppressWarnings("WeakerAccess")
 @Aspect
 public class Injector {
     private final Map<ContainerKey, Object> container = new HashedMap<>();

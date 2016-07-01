@@ -6,7 +6,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
 public class SemiRingSection {
-    private Shape semiRingSection;
+    private final Shape semiRingSection;
 
     SemiRingSection(double centerX, double centerY, double radius, double innerRadius,
                     int startingAngle, int endingAngle){

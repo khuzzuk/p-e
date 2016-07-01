@@ -4,7 +4,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
 public class SemiRing {
-    private Shape semiring;
+    private final Shape semiring;
 
     SemiRing(double centerX, double centerY, double radius, double innerRadius){
         Circle outerCircle = new Circle(centerX,centerY,radius);

@@ -5,10 +5,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
-public enum ScenarioLinkers implements FileLinker {
+enum ScenarioLinkers implements FileLinker {
     SCENARIO2010("/scen2010.csv");
 
-    private String scenarioFileName;
+    private final String scenarioFileName;
 
     ScenarioLinkers(String s) {
         scenarioFileName = s;

@@ -8,7 +8,7 @@ import pl.projectE.ui.annot.TransitionCall;
 
 @SuppressWarnings("restriction")
 public class SemiRingButton extends AnimatedButton {
-    private Color color;
+    private final Color color;
 
     public SemiRingButton(Color color, SemiRingSection semiRingSection) {
         shape = semiRingSection.getSemiRingSection();

@@ -1,6 +1,6 @@
 package pl.projectE.sec;
 
-public class AccessPermissionsBenchmark {
+class AccessPermissionsBenchmark {
     public static void main(String[] args) {
         new AccessPermissionsBenchmark().benchmark();
     }
@@ -42,13 +42,14 @@ public class AccessPermissionsBenchmark {
         }
     }
 
-    static class LimitedClass {
+    @SuppressWarnings("unused")
+    private static class LimitedClass {
         @LimitedAccess
         long limited;
         long normal;
         long withSetter;
 
-        public void setWithSetter(long withSetter) {
+        void setWithSetter(long withSetter) {
             this.withSetter = withSetter;
         }
     }

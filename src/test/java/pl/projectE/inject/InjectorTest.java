@@ -1,5 +1,6 @@
 package pl.projectE.inject;
 
+import org.assertj.core.util.VisibleForTesting;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertTrue;
 
 public class InjectorTest {
@@ -40,13 +42,13 @@ public class InjectorTest {
         new WrongInjectedClass();
     }
 
-    @Test
+    @Test(groups = "fast")
     public void checkRecursiveInjection() throws Exception {
-        OtherInjectedClass otherInjectedClass = new OtherInjectedClass();
-        assertEquals(injectedClass, otherInjectedClass.injectedClass);
+        RecursiveInjectedClass recursiveInjectedClass = new RecursiveInjectedClass();
+        assertEquals(recursiveInjectedClass.injectedClass.injectedClass, injectedClass);
     }
 
-    @Test
+    @Test(groups = "fast")
     public void checkInjectingComponentFromMethod() throws Exception {
         ClassWithComponentMethod creator = new ClassWithComponentMethod();
         InjectedClass injectedClass = creator.createObject();
@@ -54,35 +56,68 @@ public class InjectorTest {
         assertEquals(injectedClass, namedInject.injectedClass);
     }
 
+    @Test(groups = "fast")
+    public void checkAlwaysNewPolicy() throws Exception {
+        AlwaysNewClass alwaysNewClass = new AlwaysNewClass();
+        assertNotEquals(alwaysNewClass.injectedClass, injectedClass);
+    }
+
     @Component
-    static class InjectedClass{
+    @VisibleForTesting
+    @SuppressWarnings("WeakerAccess")
+    static class InjectedClass {
         @Inject
         private String injectedString;
         boolean postConstructExecuted = false;
+
         @PostConstruct
-        void postConstructMethod(){
+        void postConstructMethod() {
             postConstructExecuted = true;
         }
     }
+
+    @SuppressWarnings({"unused", "WeakerAccess"})
     @Component
-    private static class OtherInjectedClass{
+    @VisibleForTesting
+    static class OtherInjectedClass {
         @Inject
         private InjectedClass injectedClass;
     }
+
     @Component
-    private static class WrongInjectedClass{
-        @PostConstruct
-        private void wrongMethod(String s) {}
+    private static class RecursiveInjectedClass {
+        @Inject
+        private OtherInjectedClass injectedClass;
     }
 
+    @Component
+    private static class WrongInjectedClass {
+        @SuppressWarnings("EmptyMethod")
+        @PostConstruct
+        private void wrongMethod(String s) {
+        }
+    }
+
+    @Component
+    private static class AlwaysNewClass {
+        @Inject
+        @AlwaysNew
+        private InjectedClass injectedClass;
+    }
+
+    @VisibleForTesting
+    @SuppressWarnings("WeakerAccess")
     static class ClassWithComponentMethod {
         @Component
         @Named("injectedObject")
-        private InjectedClass createObject(){
+        private InjectedClass createObject() {
             return new InjectedClass();
         }
     }
+
     @Component
+    @VisibleForTesting
+    @SuppressWarnings("WeakerAccess")
     static class ClassWithNamedInject {
         @Inject
         @Named("injectedObject")

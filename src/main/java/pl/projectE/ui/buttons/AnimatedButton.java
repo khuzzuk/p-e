@@ -5,6 +5,7 @@ import javafx.scene.shape.Shape;
 
 public abstract class AnimatedButton {
     ParallelTransition transition;
+    @SuppressWarnings("WeakerAccess")
     protected Shape shape;
 
     public void setTransition(ParallelTransition newTransition){

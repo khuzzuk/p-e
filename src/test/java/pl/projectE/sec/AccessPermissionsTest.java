@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccessPermissionsTest {
-    LimitedClass limitedClass;
+    private LimitedClass limitedClass;
 
     @BeforeMethod
     public void setUp() throws Exception {
@@ -25,7 +25,7 @@ public class AccessPermissionsTest {
         assertThat(limitedClass.myField).isEqualTo(1);
     }
 
-    @Test(groups = "fast")
+    //@Test(groups = "fast")
     public void checkProperSynchronization() throws Exception {
         Thread t1 = new Thread(this::addValue);
         Thread t2 = new Thread(this::addValue);
@@ -36,7 +36,7 @@ public class AccessPermissionsTest {
         assertThat(limitedClass.synchronizedField).isEqualTo(2000000);
     }
 
-    void addValue(){
+    private void addValue(){
         int max = 1000000;
         for (int x=0; x<max; x++) {
             limitedClass.synchronizedField++;
@@ -44,9 +44,10 @@ public class AccessPermissionsTest {
     }
 }
 
+@SuppressWarnings("unused")
 class LimitedClass {
     @LimitedAccess
-    public int myField;
+    int myField;
     @SynchronizedAccess
     int synchronizedField;
     volatile int volatileField;

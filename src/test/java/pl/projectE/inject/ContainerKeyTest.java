@@ -24,8 +24,10 @@ public class ContainerKeyTest {
         assertEquals(factoryKey, expectedKey);
     }
 
+    @SuppressWarnings("WeakerAccess")
     @Named("qualified")
     static class NamedClass {}
+    @SuppressWarnings("WeakerAccess")
     @CountriesNames
     static class QualifiedClass{}
 }

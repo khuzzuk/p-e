@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ContainerKey {
-    private Class<?> componentClass;
-    private List<String> qualifiers = new ArrayList<>();
+    private final Class<?> componentClass;
+    private final List<String> qualifiers = new ArrayList<>();
 
     ContainerKey(@NotNull Class<?> componentClass) {
         this.componentClass = componentClass;
@@ -68,16 +68,14 @@ class ContainerKey {
 
         ContainerKey that = (ContainerKey) o;
 
-        if (componentClass != null ? !componentClass.equals(that.componentClass) : that.componentClass != null)
-            return false;
-        return qualifiers != null ? qualifiers.equals(that.qualifiers) : that.qualifiers == null;
+        return componentClass != null ? componentClass.equals(that.componentClass) : that.componentClass == null && qualifiers.equals(that.qualifiers);
 
     }
 
     @Override
     public int hashCode() {
         int result = componentClass != null ? componentClass.hashCode() : 0;
-        result = 31 * result + (qualifiers != null ? qualifiers.hashCode() : 0);
+        result = 31 * result + qualifiers.hashCode();
         return result;
     }
 }

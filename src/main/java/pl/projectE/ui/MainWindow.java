@@ -14,7 +14,7 @@ import pl.projectE.ui.annot.BasicContainer;
 
 @SuppressWarnings("restriction")
 @BasicContainer
-public class MainWindow extends Application {
+class MainWindow extends Application {
     public static void main(String[] args) {
         launch(args);
     }

@@ -2,16 +2,16 @@ package pl.projectE.model;
 
 import java.util.Map;
 
-public class Country {
+class Country {
     static Map<Country, Object> countries;
 
-    private String name;
+    private final String name;
 
-    public Country(String name) {
+    Country(String name) {
         this.name = name;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 }

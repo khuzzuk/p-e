@@ -7,7 +7,6 @@ import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import pl.projectE.inject.qualifiers.Implementation;
 
 import javax.inject.Inject;
 import java.lang.reflect.Field;
@@ -16,20 +15,21 @@ import java.util.Map;
 
 @Aspect
 public class Injector {
-    private Map<ContainerKey, Object> container = new HashedMap<>();
-    private PostConstructCaller caller = new PostConstructCaller();
+    private final Map<ContainerKey, Object> container = new HashedMap<>();
+    private final PostConstructCaller caller = new PostConstructCaller();
+    private final InstantiationHandler instantiationHandler = new InstantiationHandler();
 
     @After("execution(*.new(..)) && @within(pl.projectE.inject.Component) && target(o)")
     public void inject(Object o) {
-        ContainerKey key = ContainerKey.getKey(o.getClass());
         injectFieldsToClassHierarchy(o);
         caller.callPostConstructMethods(o);
+        ContainerKey key = ContainerKey.getKey(o.getClass());
         container.put(key, o);
     }
 
-    @AfterReturning(value = "execution(* *.*(..)) && @annotation(pl.projectE.inject.Component)", returning = "o")
+    @AfterReturning(value = "execution(* *.*(..)) && @annotation(pl.projectE.inject.Component)", returning = "o", argNames = "o,joinPoint")
     public void putToContainer(Object o, JoinPoint joinPoint) {
-        Method method = ((MethodSignature)joinPoint.getSignature()).getMethod();
+        Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
         container.put(ContainerKey.getKey(method), o);
     }
 
@@ -50,25 +50,11 @@ public class Injector {
 
     private void injectField(Field field, Object o) {
         ContainerKey key = ContainerKey.getKey(field);
-        if (container.containsKey(key)) {
+        if (!field.isAnnotationPresent(AlwaysNew.class) && container.containsKey(key)) {
             setValueInField(field, o, container.get(key));
         } else {
-            setValueInField(field, o, instantiateNewClass(field));
+            setValueInField(field, o, instantiationHandler.instantiateNewClass(field));
         }
-    }
-
-    @Nullable
-    private Object instantiateNewClass(Field field) {
-        try {
-            Class<?> fieldType = field.getType();
-            if(fieldType.isInterface()) {
-                fieldType = field.getAnnotation(Implementation.class).specifiedClass();
-            }
-            return fieldType.newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     private void setValueInField(Field field, Object component, @Nullable Object toInject) {

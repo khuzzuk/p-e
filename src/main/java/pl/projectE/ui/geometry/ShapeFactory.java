@@ -4,8 +4,8 @@ import javafx.scene.paint.Color;
 import pl.projectE.ui.buttons.SemiRingButton;
 
 public class ShapeFactory {
-    private static SemiRingFactory semiRingFactory = new SemiRingFactory();
-    private static SemiRingSectionFactory semiRingSectionFactory = new SemiRingSectionFactory();
+    private static final SemiRingFactory semiRingFactory = new SemiRingFactory();
+    private static final SemiRingSectionFactory semiRingSectionFactory = new SemiRingSectionFactory();
     public static SemiRingFactory semiRing(){
         return semiRingFactory;
     }

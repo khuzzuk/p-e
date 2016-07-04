@@ -14,7 +14,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertTrue;
 
-public class InjectorTest {
+public class InjectorElementTest {
     private InjectedClass injectedClass;
 
     @BeforeMethod(groups = "fast")

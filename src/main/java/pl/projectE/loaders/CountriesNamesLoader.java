@@ -14,20 +14,16 @@ import java.util.List;
 
 @Component
 @CountriesNames
-public class CountriesNamesLoader implements ResourceLoader {
+public class CountriesNamesLoader {
 
     private List<String> countries;
     @Inject
     @Implementation(specifiedClass = StartingCountryListLinker.class)
     private FileLinker fileLinker;
 
+    @SuppressWarnings("WeakerAccess")
     public CountriesNamesLoader() {}
 
-    public void setFileLinker(FileLinker fileLinker) {
-        this.fileLinker = fileLinker;
-    }
-
-    @Override
     public List<String> loadResource(){
         if (countries==null) {
             countries = loadResource(fileLinker);

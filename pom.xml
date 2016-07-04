@@ -25,6 +25,7 @@
         <testng.version>6.9.10</testng.version>
         <aspectj-plugin.version>1.8</aspectj-plugin.version>
         <validation-api.version>1.0.0.GA</validation-api.version>
+        <fastutil.version>7.0.12</fastutil.version>
     </properties>
 
     <build>
@@ -126,6 +127,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
             <version>${commons-collections4.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>it.unimi.dsi</groupId>
+            <artifactId>fastutil</artifactId>
+            <version>${fastutil.version}</version>
         </dependency>
 
         <!--JavaEE-->

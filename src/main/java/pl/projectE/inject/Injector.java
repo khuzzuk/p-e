@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
+import pl.projectE.sec.InjectorElement;
 
 import javax.inject.Inject;
 import java.lang.reflect.Field;
@@ -15,7 +16,7 @@ import java.util.Map;
 
 @SuppressWarnings("WeakerAccess")
 @Aspect
-@pl.projectE.sec.Injector
+@InjectorElement
 public class Injector {
     private final Map<ContainerKey, Object> container = new HashedMap<>();
     private final PostConstructCaller caller = new PostConstructCaller();
@@ -33,7 +34,7 @@ public class Injector {
     public void putToContainer(Object o, JoinPoint joinPoint) {
         Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
         container.put(ContainerKey.getKey(method), o);
-    }
+     }
 
     private void injectFieldsToClassHierarchy(Object o) {
         Class<?> c = o.getClass();

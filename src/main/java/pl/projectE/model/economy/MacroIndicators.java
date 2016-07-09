@@ -6,5 +6,15 @@ public class MacroIndicators {
     @LimitedAccess
     public int inflation;
     @LimitedAccess
-    private int debtInterestRate;
+    public int debtInterestRate;
+    @LimitedAccess
+    public int averageSalary;
+    @LimitedAccess
+    public int cci;
+    @LimitedAccess
+    public long gdp;
+    @LimitedAccess
+    public long investments;
+    @LimitedAccess
+    public long netWages;
 }

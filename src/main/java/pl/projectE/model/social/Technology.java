@@ -24,5 +24,5 @@ public class Technology {
     @LimitedAccess
     public int techForeignLanguages;
     @LimitedAccess
-    public int Artistry;
+    public int techArtistry;
 }

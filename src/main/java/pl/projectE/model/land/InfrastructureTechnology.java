@@ -1,18 +1,18 @@
-package pl.projectE.model.logistics;
+package pl.projectE.model.land;
 
 import pl.projectE.sec.LimitedAccess;
 
-public class Infrastructure {
+public class InfrastructureTechnology {
     @LimitedAccess
     public int roads;
     @LimitedAccess
     public int highways;
     @LimitedAccess
-    public int Railways;
+    public int railways;
     @LimitedAccess
-    public int Airports;
+    public int airports;
     @LimitedAccess
-    public int Docks;
+    public int docks;
     @LimitedAccess
-    public int Vehicles;
+    public int vehicles;
 }

@@ -3,8 +3,6 @@ package pl.projectE.loaders;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.projectE.inject.Component;
-import pl.projectE.inject.qualifiers.CountriesNames;
-import pl.projectE.inject.qualifiers.Scenario;
 
 import javax.inject.Named;
 import java.util.List;
@@ -32,17 +30,5 @@ public class ScenarioLoaderTest {
     @Named("scenarioToLoad")
     private FileLinker putScenarioFileToContainer(){
         return ScenarioLinkers.SCENARIO2010;
-    }
-
-    @Component
-    @Scenario
-    private ScenarioToArrayLoader putMockedLoaderToContainer(final ScenarioToArrayLoader mockedLoader) {
-        return mockedLoader;
-    }
-
-    @Component
-    @CountriesNames
-    private CountriesNamesLoader putMockedCountriesNamesLoaderToContainer(CountriesNamesLoader countriesNamesLoader) {
-        return countriesNamesLoader;
     }
 }

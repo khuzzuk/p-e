@@ -1,0 +1,51 @@
+package pl.projectE.loaders;
+
+public class FileVars {
+    static final int pensionNetCapital = 1;
+    static final int nationalDebt = pensionNetCapital + 1;
+    static final int assetsPrivate = nationalDebt + 1;
+    static final int assetsCorporate = assetsPrivate + 1;
+    static final int stockMarketValue = assetsCorporate + 1;
+    static final int m0 = stockMarketValue + 1;
+    static final int inflation = m0 + 1;
+    static final int debtInterestRate = inflation + 1;
+    static final int averageSalary = debtInterestRate + 1;
+    static final int cci = averageSalary+ 1;
+    static final int gdp = cci+ 1;
+    static final int investments = gdp+ 1;
+    static final int netWages = investments+ 1;
+    static final int militaryEquipmentCapital = netWages+ 1;
+    static final int totalGovReceipts = militaryEquipmentCapital+ 1;
+    static final int housingUnits = totalGovReceipts + 1;
+    static final int educatedPopulation = housingUnits+ 1;
+    static final int familyValues = educatedPopulation+ 1;
+    static final int roads = familyValues+ 1;
+    static final int highways = roads+ 1;
+    static final int railways = highways+ 1;
+    static final int airports = railways+ 1;
+    static final int docks = airports+ 1;
+    static final int vehicles = docks+ 1;
+    static final int roadsTech = vehicles+ 1;
+    static final int highwaysTech = roadsTech+ 1;
+    static final int railwaysTech = highwaysTech+ 1;
+    static final int airportsTech = railwaysTech+ 1;
+    static final int docksTech = airportsTech+ 1;
+    static final int vehiclesTech = docksTech+ 1;
+    static final int corruption = vehiclesTech+ 1;
+    static final int crimeRate= corruption+ 1;
+    static final int imprisonedPopulation= crimeRate+ 1;
+    static final int policeEquipmentCapital= imprisonedPopulation+ 1;
+    static final int healthCondition= policeEquipmentCapital+ 1;
+    static final int techNaturalResources= healthCondition+ 1;
+    static final int techBiomedics= techNaturalResources+ 1;
+    static final int techEngineering= techBiomedics+ 1;
+    static final int techComputers= techEngineering+ 1;
+    static final int techMathematicsEconomy= techComputers+ 1;
+    static final int techPhysics= techMathematicsEconomy+ 1;
+    static final int techSocialSciences= techPhysics+ 1;
+    static final int techMilitary= techSocialSciences+ 1;
+    static final int techHumanities= techMilitary+ 1;
+    static final int techForeignLanguages= techHumanities+ 1;
+    static final int techArtistry= techForeignLanguages+ 1;
+
+}

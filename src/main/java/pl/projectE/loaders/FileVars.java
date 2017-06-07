@@ -48,4 +48,25 @@ public class FileVars {
     static final int techForeignLanguages= techHumanities+ 1;
     static final int techArtistry= techForeignLanguages+ 1;
 
+    static final int PITLowMargin = techArtistry + 2;
+    static final int PITMediumMargin = PITLowMargin + 1;
+    static final int PITHighMargin = PITMediumMargin + 1;
+    static final int PITLowMarginThreshold = PITHighMargin+ 1;
+    static final int PITMediumLimitThreshold = PITLowMarginThreshold+ 1;
+    static final int Payroll = PITMediumLimitThreshold+ 1;
+    static final int CIT = Payroll + 1;
+    static final int Redundancy = CIT+ 1;
+    static final int VAT = + Redundancy+1;
+    static final int Sales = VAT+ 1;
+    static final int Tariff = Sales+ 1;
+    static final int FromLandOwnership = Tariff+ 1;
+    static final int ImprovementsToLands = FromLandOwnership+ 1;
+    static final int MovableProperty = ImprovementsToLands+ 1;
+    static final int Inheritance = MovableProperty+ 1;
+    static final int CapitalGains = Inheritance+ 1;
+    static final int FinancialTransaction = CapitalGains+ 1;
+    static final int Tolls = FinancialTransaction+ 1;
+    static final int CrimeFees = Tolls+ 1;
+    static final int GovernmentEmployee = CrimeFees+ 1;
+    static final int GovernmentBenefactors = GovernmentEmployee+ 1;
 }

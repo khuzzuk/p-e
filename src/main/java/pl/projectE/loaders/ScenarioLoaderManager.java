@@ -1,14 +1,18 @@
 package pl.projectE.loaders;
 
-import pl.projectE.inject.Component;
+import pl.projectE.model.Country;
 
-import javax.inject.Named;
+import java.util.Map;
+import java.util.SortedMap;
 
-@Component
 public class ScenarioLoaderManager {
-    @Component
-    @Named("scenarioToLoad")
-    public FileLinker loadScenario(){
-        return ScenarioLinkers.SCENARIO2010;
+    public Map<String, Country> loadScenario() {
+        return loadScenario(ScenarioLinkers.SCENARIO2010);
+    }
+    private SortedMap<String, Country> loadScenario(FileLinker scenarioLinker){
+        ScenarioLoader loader = new ScenarioLoader(new ScenarioToArrayLoader(scenarioLinker),
+                new CountriesNamesLoader(new StartingCountryListLinker()));
+        loader.loadScenario();
+        return loader.countries;
     }
 }

@@ -2,9 +2,6 @@ package pl.projectE.loaders;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pl.projectE.inject.Component;
-
-import javax.inject.Named;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,20 +11,18 @@ public class ScenarioLoaderTest {
     private ScenarioLoader scenarioLoader;
 
     @BeforeMethod
-
     public void setUp() throws Exception {
         putScenarioFileToContainer();
-        scenarioLoader = new ScenarioLoader();
+        scenarioLoader = new ScenarioLoader(new ScenarioToArrayLoader(ScenarioLinkers.SCENARIO2010),
+                new CountriesNamesLoader(new StartingCountryListLinker()));
     }
 
     @Test(groups = "integration")
     public void loadGameTest() throws Exception {
         scenarioLoader.loadScenario();
-        assertThat(scenarioLoader.getCountries()).isNotNull();
+        assertThat(scenarioLoader.countries).isNotNull();
     }
 
-    @Component
-    @Named("scenarioToLoad")
     private FileLinker putScenarioFileToContainer(){
         return ScenarioLinkers.SCENARIO2010;
     }

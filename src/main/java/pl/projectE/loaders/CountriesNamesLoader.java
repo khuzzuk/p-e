@@ -1,42 +1,28 @@
 package pl.projectE.loaders;
 
-import pl.projectE.inject.Component;
-import pl.projectE.inject.qualifiers.CountriesNames;
-import pl.projectE.inject.qualifiers.Implementation;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
-import javax.inject.Inject;
-import javax.validation.constraints.NotNull;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.List;
 
-@Component
-@CountriesNames
+@RequiredArgsConstructor
+@Log4j2
 public class CountriesNamesLoader {
 
     private List<String> countries;
-    @Inject
-    @Implementation(specifiedClass = StartingCountryListLinker.class)
+    @NonNull
     private FileLinker fileLinker;
 
-    @SuppressWarnings("WeakerAccess")
-    public CountriesNamesLoader() {}
-
-    public List<String> loadResource(){
-        if (countries==null) {
-            countries = loadResource(fileLinker);
-        }
-        return countries;
-    }
-
-    private List<String> loadResource(@NotNull FileLinker fileLinker) {
-        List<String> countries = new ArrayList<>();
-        try {
-            countries = Files.readAllLines(fileLinker.getResource(), StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            e.printStackTrace();
+    List<String> loadResource() {
+        if (countries == null) {
+            try {
+                countries = fileLinker.readAllLines();
+            } catch (IOException e) {
+                log.error("cannot read file {}", fileLinker);
+                log.error(e);
+            }
         }
         return countries;
     }

@@ -10,7 +10,7 @@ public class CountriesNamesImplementationTest {
 
     @Test(groups = "integration")
     public void checkLoadingLines() throws Exception {
-        CountriesNamesLoader loader = new CountriesNamesLoader();
+        CountriesNamesLoader loader = new CountriesNamesLoader(ScenarioLinkers.SCENARIO2010);
         List<String> strings = loader.loadResource();
         int numberOfCountries = 54;
         assertThat(strings.size()).isEqualTo(numberOfCountries);

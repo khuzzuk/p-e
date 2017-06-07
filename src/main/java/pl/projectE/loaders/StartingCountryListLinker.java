@@ -1,20 +1,16 @@
 package pl.projectE.loaders;
 
-import com.sun.istack.internal.Nullable;
+import lombok.Getter;
+import lombok.extern.log4j.Log4j2;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.file.Path;
+import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
+@Log4j2
 public class StartingCountryListLinker implements FileLinker {
-    @Override
-    @Nullable
-    public Path getResource() {
-        try {
-            return Paths.get(this.getClass().getResource("/countryList.dat").toURI());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+    @Getter
+    private String path = "/countryList.dat";
 }

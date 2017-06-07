@@ -1,0 +1,12 @@
+.slider {
+    -fx-show-tick-labels: true;
+    -fx-show-tick-marks: true;
+    -fx-major-tick-unit: 1;
+}
+.int-label {
+    -fx-min-width: 50px;
+    -fx-padding: 5px;
+}
+.int-label-change {
+    -fx-font-size: 7px;
+}

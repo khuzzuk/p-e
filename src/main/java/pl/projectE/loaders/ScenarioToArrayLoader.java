@@ -1,21 +1,16 @@
 package pl.projectE.loaders;
 
-import pl.projectE.inject.Component;
-import pl.projectE.inject.qualifiers.Scenario;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
 
-@Component
-@Scenario
+@RequiredArgsConstructor
 public class ScenarioToArrayLoader {
-
-    @Inject
-    @Named("scenarioToLoad")
+    @NonNull
     private FileLinker scenario;
     private String[][] data;
 
@@ -28,7 +23,7 @@ public class ScenarioToArrayLoader {
     private String[][] loadFile() {
         String[][] tempData = null;
         try {
-            List<String> rawData = loadRawData();
+            List<String> rawData = scenario.readAllLines();
             tempData = new String[rawData.size()][];
             for (int x=0; x<tempData.length; x++) {
                 tempData[x] = rawData.get(x).split(";");
@@ -37,9 +32,5 @@ public class ScenarioToArrayLoader {
             e.printStackTrace();
         }
         return tempData;
-    }
-
-    private List<String> loadRawData() throws IOException {
-        return Files.readAllLines(scenario.getResource(), StandardCharsets.UTF_8);
     }
 }

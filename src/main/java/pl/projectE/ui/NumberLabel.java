@@ -1,32 +1,28 @@
 package pl.projectE.ui;
 
 import javafx.scene.control.Label;
-import org.apache.commons.lang3.math.NumberUtils;
-
-import java.text.DecimalFormat;
 
 public class NumberLabel extends Label {
     long minValue;
     long maxValue;
-    long divider;
-    String suffix;
-    DecimalFormat format;
-    long currentValue;
+    ValueFormatter formatter;
+    private long currentValue;
     void change(long num) {
-        currentValue = Long.max(minValue, Long.min(maxValue, currentValue + num));
+        currentValue += num;
+        setText(currentValue);
         format();
     }
 
     void setText(long value) {
-        currentValue = value;
+        currentValue = Long.max(minValue, Long.min(maxValue, value));
         format();
     }
 
     private void format() {
-        setText(format.format(((double)currentValue) / divider) + suffix);
+        setText(formatter.forNumber(currentValue));
     }
 
     long getIntValue() {
-        return Math.round(NumberUtils.toDouble(getText().replace(suffix, "")) * divider);
+        return formatter.from(getText());
     }
 }

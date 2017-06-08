@@ -13,11 +13,7 @@ public @interface Formatter {
 
     int maxValue();
 
-    int divider() default 1;
-
     int change() default 1;
 
-    String suffix() default "";
-
-    String decimalFormat() default "#0.0";
+    ValueFormatter formatter() default ValueFormatter.CURRENCY;
 }

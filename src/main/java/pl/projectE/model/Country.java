@@ -15,7 +15,7 @@ import pl.projectE.model.social.SocialIndicators;
 import pl.projectE.model.social.Technology;
 
 @RequiredArgsConstructor
-public class Country {
+public class Country implements Comparable<Country> {
     public final String name;
     public Assets assets;
     public MacroIndicators macroIndicators;
@@ -29,4 +29,9 @@ public class Country {
     public Technology technology;
     public GovernmentFinances governmentFinances;
     public TaxPolicy taxPolicy;
+
+    @Override
+    public int compareTo(Country o) {
+        return name.compareTo(o.name);
+    }
 }

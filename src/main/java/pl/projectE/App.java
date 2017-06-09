@@ -8,11 +8,10 @@ import pl.projectE.loaders.ScenarioLoaderManager;
 import pl.projectE.ui.MainWindowStage;
 
 public class App extends Application {
-    public static Bus bus;
+    public static final Bus bus = Bus.initializeBus();
     private static ScenarioLoaderManager scenarioLoaderManager;
 
     public static void main(String[] args) {
-        bus = Bus.initializeBus(false);
         scenarioLoaderManager = new ScenarioLoaderManager();
         bus.setResponse("scenario.loader.load.2010", () -> scenarioLoaderManager.loadScenario());
         CountriesCache.init();

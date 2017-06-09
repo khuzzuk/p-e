@@ -16,19 +16,11 @@ public interface ColumnFactory {
         return col;
     }
 
-    default TableColumn<Country, String> getColumnWithLong(String name, double divider, String suffix,
-                                                           Function<Country, Long> setter) {
+    default TableColumn<Country, String> getColumn(String name, ValueFormatter valueFormatter,
+                                                           Function<Country, Number> setter) {
         TableColumn<Country, String> col = new TableColumn<>(name);
-        col.setCellValueFactory(c -> new SimpleStringProperty(FORMATTER
-                .format(setter.apply((c.getValue())).doubleValue() / divider) + suffix));
-        return col;
-    }
-
-    default TableColumn<Country, String> getColumnWithInt(String name, double divider, String suffix,
-                                                          Function<Country, Integer> setter) {
-        TableColumn<Country, String> col = new TableColumn<>(name);
-        col.setCellValueFactory(c -> new SimpleStringProperty(FORMATTER
-                .format(setter.apply((c.getValue())).doubleValue() / divider) + suffix));
+        col.setCellValueFactory(c ->
+                new SimpleStringProperty(valueFormatter.forNumber(setter.apply(c.getValue()).doubleValue())));
         return col;
     }
 

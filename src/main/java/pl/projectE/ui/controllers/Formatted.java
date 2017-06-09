@@ -1,10 +1,13 @@
-package pl.projectE.ui;
+package pl.projectE.ui.controllers;
 
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import pl.projectE.ui.Cleaning;
+import pl.projectE.ui.Formatter;
+import pl.projectE.ui.NumberLabel;
 
 import java.lang.reflect.Field;
 import java.net.URL;

@@ -3,17 +3,17 @@ package pl.projectE.ui;
 import javafx.scene.control.Label;
 
 public class NumberLabel extends Label {
-    long minValue;
-    long maxValue;
-    ValueFormatter formatter;
+    public long minValue;
+    public long maxValue;
+    public ValueFormatter formatter;
     private long currentValue;
-    void change(long num) {
+    public void change(long num) {
         currentValue += num;
         setText(currentValue);
         format();
     }
 
-    void setText(long value) {
+    public void setText(long value) {
         currentValue = Long.max(minValue, Long.min(maxValue, value));
         format();
     }

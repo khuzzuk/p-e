@@ -27,37 +27,64 @@ public enum ValueFormatter {
         }
     },
     CURRENCY(new DecimalFormat("#,##0.00")) {
-        private List<String> suffixes = Arrays.asList("", "k", "mln", "bln", "tln", "qln");
-
         @Override
         String forNumber(double n) {
-            for (int x = 0; x < suffixes.size(); x++) {
-                double a = Math.pow(10, x * 3);
-                double b = a * 5000D;
-                if (n < b) {
-                    return getFormatter().format(n / a) + suffixes.get(x);
-                }
-            }
-            return getFormatter().format(n);
+            return levelFormat(n, getFormatter());
         }
 
         @Override
         long from(String value) {
+            return Math.round(leveledString(value));
+        }
+    },
+    CURRENCY_PRECISE(new DecimalFormat("#,##0.00")) {
+        @Override
+        String forNumber(double num) {
+            return getFormatter().format(num / 1000D);
+        }
 
-            Optional<String> suffix = suffixes
-                    .stream()
-                    .skip(1)
-                    .filter(value::contains)
-                    .findFirst();
-            String num = value.replace(",", "").replace(suffix.orElse(""), "");
-            return Math.round(NumberUtils.toDouble(num) * Math.pow(10, suffixes.indexOf(suffix.orElse("")) * 3));
+        @Override
+        long from(String value) {
+            return Math.round(NumberUtils.toDouble(value.replace(",", "")) * 1000);
+        }
+    },
+    SIMPLE(new DecimalFormat("#,##0")) {
+        @Override
+        String forNumber(double num) {
+            return levelFormat(num, getFormatter());
+        }
+
+        @Override
+        long from(String value) {
+            return Math.round(leveledString(value));
         }
     };
-
+    private static List<String> suffixes = Arrays.asList("", " k", " mln", " bln", " tln", " qln");
     @Getter
     private final DecimalFormat formatter;
 
     abstract String forNumber(double num);
 
     abstract long from(String value);
+
+    private static String levelFormat(double n, DecimalFormat formatter) {
+        for (int x = 0; x < suffixes.size(); x++) {
+            double a = Math.pow(10, x * 3);
+            double b = a * 5000D;
+            if (n < b) {
+                return formatter.format(n / a) + suffixes.get(x);
+            }
+        }
+        return formatter.format(n);
+    }
+
+    private static double leveledString(String value) {
+        Optional<String> suffix = suffixes
+                .stream()
+                .skip(1)
+                .filter(value::contains)
+                .findFirst();
+        String num = value.replace(",", "").replace(suffix.orElse(""), "");
+        return NumberUtils.toDouble(num) * Math.pow(10, suffixes.indexOf(suffix.orElse("")) * 3);
+    }
 }

@@ -3,11 +3,16 @@ package pl.projectE.ui
 import spock.lang.Specification
 import spock.lang.Unroll
 
+import static pl.projectE.ui.ValueFormatter.CURRENCY
+import static pl.projectE.ui.ValueFormatter.CURRENCY_PRECISE
+import static pl.projectE.ui.ValueFormatter.PERCENT
+import static pl.projectE.ui.ValueFormatter.SIMPLE
+
 @Unroll
 class ValueFormatterSpec extends Specification {
     def "format number properly"() {
         when:
-        def s = ValueFormatter.CURRENCY.forNumber(number)
+        def s = CURRENCY.forNumber(number)
         then:
         s == format
 
@@ -15,16 +20,16 @@ class ValueFormatterSpec extends Specification {
         number                         | format
         1                              | "1.00"
         1000                           | "1,000.00"
-        10000                          | "10.00k"
-        10_000_000                     | "10.00mln"
-        10_000_000_000                 | "10.00bln"
-        10_000_000_000_000             | "10.00tln"
-        10_000_000_000_000_000         | "10.00qln"
+        10000                          | "10.00 k"
+        10_000_000                     | "10.00 mln"
+        10_000_000_000                 | "10.00 bln"
+        10_000_000_000_000             | "10.00 tln"
+        10_000_000_000_000_000         | "10.00 qln"
     }
 
     def "parse number from String"() {
         when:
-        def num = ValueFormatter.CURRENCY.from(format)
+        def num = CURRENCY.from(format)
         then:
         num == number
 
@@ -32,16 +37,16 @@ class ValueFormatterSpec extends Specification {
         number                         | format
         1                              | "1.00"
         1000                           | "1,000.00"
-        10000                          | "10.00k"
-        10_000_000                     | "10.00mln"
-        10_000_000_000                 | "10.00bln"
-        10_000_000_000_000             | "10.00tln"
-        10_000_000_000_000_000         | "10.00qln"
+        10000                          | "10.00 k"
+        10_000_000                     | "10.00 mln"
+        10_000_000_000                 | "10.00 bln"
+        10_000_000_000_000             | "10.00 tln"
+        10_000_000_000_000_000         | "10.00 qln"
     }
 
     def "format percent"() {
         when:
-        def formatted = ValueFormatter.PERCENT.forNumber(1000)
+        def formatted = PERCENT.forNumber(1000)
 
         then:
         formatted == "100.0%"
@@ -49,9 +54,43 @@ class ValueFormatterSpec extends Specification {
 
     def "parse percent"() {
         when:
-        def num = ValueFormatter.PERCENT.from("50.0%")
+        def num = PERCENT.from("50.0%")
 
         then:
         num == 500
+    }
+
+    def "parse currency precise"() {
+        when:
+        def formatted = CURRENCY_PRECISE.forNumber(number)
+        def num = CURRENCY_PRECISE.from(format)
+
+        then:
+        formatted == format
+        num == number
+
+        where:
+        number         | format
+        40             | "0.04"
+        40_000         | "40.00"
+        40_000_000     | "40,000.00"
+        40_000_000_000 | "40,000,000.00"
+    }
+
+    def "parse simple"() {
+        when:
+        def formatted = SIMPLE.forNumber(number)
+        def num = SIMPLE.from(format)
+
+        then:
+        formatted == format
+        num == number
+
+        where:
+        number         | format
+        40             | "40"
+        40_000         | "40 k"
+        40_000_000     | "40 mln"
+        40_000_000_000 | "40 bln"
     }
 }

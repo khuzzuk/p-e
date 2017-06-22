@@ -30,4 +30,11 @@ public interface ColumnFactory {
         col.setCellValueFactory(c -> new SimpleStringProperty(setter.apply(c.getValue()) ? "true" : "false"));
         return col;
     }
+
+    default TableColumn<Country, String> getColumnWithEnum(String name,
+                                                              Function<Country, Enum<?>> setter) {
+        TableColumn<Country, String> col = new TableColumn<>(name);
+        col.setCellValueFactory(c -> new SimpleStringProperty(setter.apply(c.getValue()).name()));
+        return col;
+    }
 }

@@ -42,9 +42,24 @@ public class MainWindowController extends Formatted {
     @Cleaning(type = TABLE_VIEW)
     @CountryData
     public SocialIndicatorsTableView socialIndicators;
+    @Cleaning(type = TABLE_VIEW)
+    @CountryData
+    public TechnologyTableView technology;
+    @Cleaning(type = TABLE_VIEW)
+    @CountryData
+    public PensionsTableView pensions;
+
+    @Cleaning(type = TABLE_VIEW)
+    @CountryData
+    public EmploymentTableView employment;
+    @Cleaning(type = TABLE_VIEW)
+    @CountryData
+    public AdministrationTableView administration;
+    @Cleaning(type = TABLE_VIEW)
+    @CountryData
+    public MilitaryTableView military;
     @Cleaning(type = COMBO_BOX)
     public ComboBox<String> countriesList;
-
     public TaxViewController taxViewController;
     public Tab taxTab;
 

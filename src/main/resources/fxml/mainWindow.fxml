@@ -2,16 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import pl.projectE.ui.*?>
-<?import pl.projectE.ui.tables.MacroIndicatorsTableView?>
-<?import pl.projectE.ui.tables.InfrastructureTableView?>
-<?import pl.projectE.ui.tables.RevenuesTableView?>
-<?import pl.projectE.ui.tables.AssetsTableView?>
-<?import pl.projectE.ui.tables.TaxTableView?>
-<?import pl.projectE.ui.tables.CivilSecurityTableView?>
-<?import pl.projectE.ui.tables.HealthCareTableView?>
-<?import pl.projectE.ui.tables.SocialIndicatorsTableView?>
-<GridPane prefHeight="800.0" prefWidth="1300.0" stylesheets="/fxml/main.css" xmlns="http://javafx.com/javafx/8.0.112"
+<?import pl.projectE.ui.tables.*?>
+<GridPane prefHeight="790.0" prefWidth="1250.0" stylesheets="/fxml/main.css" xmlns="http://javafx.com/javafx/8.0.112"
           xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.projectE.ui.controllers.MainWindowController">
     <rowConstraints>
         <RowConstraints/>
@@ -44,7 +36,10 @@
             </TitledPane>
             <TitledPane text="World overview">
                 <TabPane>
-                    <Tab text="Tax policies">
+                    <Tab closable="false" text="Administration">
+                        <AdministrationTableView fx:id="administration"/>
+                    </Tab>
+                    <Tab closable="false" text="Tax policies">
                         <TaxTableView fx:id="taxes"/>
                     </Tab>
                     <Tab closable="false" text="Revenues">
@@ -65,8 +60,20 @@
                     <Tab closable="false" text="Health care">
                         <HealthCareTableView fx:id="healthCare"/>
                     </Tab>
-                    <Tab closable="false" text="Health care">
+                    <Tab closable="false" text="Social indicators">
                         <SocialIndicatorsTableView fx:id="socialIndicators"/>
+                    </Tab>
+                    <Tab closable="false" text="Employment">
+                        <EmploymentTableView fx:id="employment"/>
+                    </Tab>
+                    <Tab closable="false" text="Pensions">
+                        <PensionsTableView fx:id="pensions"/>
+                    </Tab>
+                    <Tab closable="false" text="Technology">
+                        <TechnologyTableView fx:id="technology"/>
+                    </Tab>
+                    <Tab closable="false" text="Military">
+                        <MilitaryTableView fx:id="military"/>
                     </Tab>
                 </TabPane>
             </TitledPane>

@@ -15,6 +15,7 @@ import pl.projectE.model.social.SocialIndicators;
 import pl.projectE.model.social.Technology;
 
 import static pl.projectE.loaders.FileVars.*;
+import static pl.projectE.loaders.LoadersUtil.loadInt;
 
 @UtilityClass
 class DeterminantsLoader {
@@ -130,6 +131,8 @@ class DeterminantsLoader {
     private static HealthCare loadHealthCare(String[][] rawData, int column) {
         HealthCare healthCare = new HealthCare();
         healthCare.healthCondition = Integer.parseInt(rawData[healthCondition][column]);
+        healthCare.healthFundingOfHealthCareNeeds = loadInt(rawData[healthFundingOfHealthCareNeeds][column]);
+        healthCare.healthMedicalStuffSalary = loadInt(rawData[healthMedicalStuffSalary][column]);
         return healthCare;
     }
 

@@ -1,4 +1,4 @@
-package pl.projectE.model.government;
+package pl.projectE.model.economy;
 
 public class Employment {
     public int unemploymentBenefits;

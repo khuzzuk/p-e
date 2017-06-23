@@ -8,6 +8,7 @@ import pl.projectE.model.government.GovernmentFinances;
 import pl.projectE.model.government.Military;
 import pl.projectE.model.land.ImprovementsToLand;
 import pl.projectE.model.land.Infrastructure;
+import pl.projectE.model.land.InfrastructureFunding;
 import pl.projectE.model.land.InfrastructureTechnology;
 import pl.projectE.model.social.CivilSecurity;
 import pl.projectE.model.social.HealthCare;
@@ -25,7 +26,8 @@ class DeterminantsLoader {
         country.military = loadMilitary(rawData, x);
         country.improvementsToLand = loadImprovementsToLand(rawData, x);
         country.infrastructure = laodInfrastructure(rawData, x);
-        country.infrastructureTechnology = loadInfrastructureTechnology(rawData, x);
+        country.infrastructure.infrastructureTechnology = loadInfrastructureTechnology(rawData, x);
+        country.infrastructure.infrastructureFunding = loadInfrastructureFunding(rawData, x);
         country.socialIndicators = loadSocialIndicators(rawData, x);
         country.civilSecurity = loadCivilSecurity(rawData, x);
         country.healthCare = loadHealthCare(rawData, x);
@@ -136,4 +138,14 @@ class DeterminantsLoader {
         return healthCare;
     }
 
+    private static InfrastructureFunding loadInfrastructureFunding(String[][] rawData, int column) {
+        InfrastructureFunding infrastructure = new InfrastructureFunding();
+        infrastructure.roads = loadInt(rawData[infrastructureRoadwaysFunding][column]);
+        infrastructure.highways = loadInt(rawData[infrastructureHighwaysFunding][column]);
+        infrastructure.railways = loadInt(rawData[infrastructureRailwaysFunding][column]);
+        infrastructure.airports = loadInt(rawData[infrastructureAirportsFunding][column]);
+        infrastructure.docks = loadInt(rawData[infrastructureNavyFunding][column]);
+        infrastructure.vehicles = loadInt(rawData[infrastructureVehiclesFunding][column]);
+        return infrastructure;
+    }
 }

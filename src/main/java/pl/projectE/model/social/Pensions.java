@@ -1,4 +1,4 @@
-package pl.projectE.model.government;
+package pl.projectE.model.social;
 
 public class Pensions {
     public int retirementAge;

@@ -2,9 +2,10 @@ package pl.projectE.loaders;
 
 import lombok.experimental.UtilityClass;
 import pl.projectE.model.Country;
+import pl.projectE.model.economy.Employment;
 import pl.projectE.model.government.*;
-import pl.projectE.model.government.Employment;
-import pl.projectE.model.government.Pensions;
+import pl.projectE.model.social.Education;
+import pl.projectE.model.social.Pensions;
 
 import static pl.projectE.loaders.FileVars.*;
 import static pl.projectE.loaders.LoadersUtil.loadBoolean;
@@ -17,6 +18,7 @@ class GovernmentActionsLoader {
         country.administration = loadAdministration(rawData, column);
         country.employment = loadEmployment(rawData, column);
         country.pensions = loadPensions(rawData, column);
+        country.education = loadEducation(rawData, column);
     }
 
     private static TaxPolicy loadTaxPolicy(String[][] rawData, int column) {
@@ -125,5 +127,27 @@ class GovernmentActionsLoader {
         pensions.governmentPensionFunding = loadInt(rawData[socGovernmentPensionFunding][column]);
         pensions.retirementAge = loadInt(rawData[lawRetirementAge][column]);
         return pensions;
+    }
+
+    private static Education loadEducation(String[][] rawData, int column) {
+        Education education = new Education();
+        education.numberOfEducationalDays = loadInt(rawData[eduNumberOfEducationalDaysz][column]);
+        education.numberOfChildInGroups = loadInt(rawData[eduNumberOfChildInGroupsz][column]);
+        education.teachersSalary = loadInt(rawData[eduTeachersSalary][column]);
+        education.plannedStudents = loadInt(rawData[eduPlannedStudents][column]);
+        education.fundingResearch = loadInt(rawData[eduFundingResearch][column]);
+        education.naturalResourcesFunding = loadInt(rawData[eduNaturalResourcesFunding][column]);
+        education.biomedicsFunding = loadInt(rawData[eduBiomedicsFunding][column]);
+        education.engineeringFunding = loadInt(rawData[eduEngineeringFunding][column]);
+        education.computersFunding = loadInt(rawData[eduComputersFunding][column]);
+        education.mathematicsEconomyFunding = loadInt(rawData[eduMathematicsEconomyFunding][column]);
+        education.physicsFunding = loadInt(rawData[eduPhysicsFunding][column]);
+        education.socialSciencesFunding = loadInt(rawData[eduSocialSciencesFunding][column]);
+        education.militaryFunding = loadInt(rawData[eduMilitaryFunding][column]);
+        education.humanitiesFunding = loadInt(rawData[eduHumanitiesFunding][column]);
+        education.artistryFunding = loadInt(rawData[eduArtistryFunding][column]);
+        education.foreignLanguagesFunding = loadInt(rawData[eduForeignLanguagesFunding][column]);
+        education.researchEquipmentFunding = loadInt(rawData[eduResearchEquipmentFunding][column]);
+        return education;
     }
 }

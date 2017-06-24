@@ -47,8 +47,11 @@ public class MainWindowController extends Formatted {
     public TechnologyTableView technology;
     @Cleaning(type = TABLE_VIEW)
     @CountryData
-    public EducationTableView education;
+    public EnergyTableView energy;
 
+    @Cleaning(type = TABLE_VIEW)
+    @CountryData
+    public EducationTableView education;
     @Cleaning(type = TABLE_VIEW)
     @CountryData
     public PensionsTableView pensions;

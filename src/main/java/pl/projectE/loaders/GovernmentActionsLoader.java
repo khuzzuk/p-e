@@ -4,6 +4,7 @@ import lombok.experimental.UtilityClass;
 import pl.projectE.model.Country;
 import pl.projectE.model.economy.Employment;
 import pl.projectE.model.government.*;
+import pl.projectE.model.production.Energy;
 import pl.projectE.model.social.Education;
 import pl.projectE.model.social.Pensions;
 
@@ -19,6 +20,7 @@ class GovernmentActionsLoader {
         country.employment = loadEmployment(rawData, column);
         country.pensions = loadPensions(rawData, column);
         country.education = loadEducation(rawData, column);
+        country.energy = loadEnergy(rawData, column);
     }
 
     private static TaxPolicy loadTaxPolicy(String[][] rawData, int column) {
@@ -157,5 +159,13 @@ class GovernmentActionsLoader {
         education.foreignLanguagesFunding = loadInt(rawData[eduForeignLanguagesFunding][column]);
         education.researchEquipmentFunding = loadInt(rawData[eduResearchEquipmentFunding][column]);
         return education;
+    }
+
+    private Energy loadEnergy(String[][] rawData, int column) {
+        Energy energy = new Energy();
+        energy.clean = loadInt(rawData[energyClean][column]);
+        energy.conventional = loadInt(rawData[energyConventional][column]);
+        energy.nuclear = loadInt(rawData[energyNuclear][column]);
+        return energy;
     }
 }

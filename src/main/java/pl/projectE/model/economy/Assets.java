@@ -7,4 +7,5 @@ public class Assets {
     public long assetsCorporate;
     public long stockMarketValue;
     public long m0;
+    public int interestRates;
 }

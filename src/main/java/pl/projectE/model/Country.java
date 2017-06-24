@@ -10,6 +10,7 @@ import pl.projectE.model.government.Military;
 import pl.projectE.model.government.TaxPolicy;
 import pl.projectE.model.land.ImprovementsToLand;
 import pl.projectE.model.land.Infrastructure;
+import pl.projectE.model.production.Energy;
 import pl.projectE.model.social.*;
 
 @RequiredArgsConstructor
@@ -30,6 +31,7 @@ public class Country implements Comparable<Country> {
     public Technology technology;
     public GovernmentFinances governmentFinances;
     public TaxPolicy taxPolicy;
+    public Energy energy;
 
     @Override
     public int compareTo(Country o) {

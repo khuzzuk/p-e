@@ -78,6 +78,13 @@
                     <Tab closable="false" text="Military">
                         <MilitaryTableView fx:id="military"/>
                     </Tab>
+                    <Tab closable="false" text="Production">
+                        <TabPane>
+                            <Tab closable="false" text="Energy">
+                                <EnergyTableView fx:id="energy"/>
+                            </Tab>
+                        </TabPane>
+                    </Tab>
                 </TabPane>
             </TitledPane>
         </panes>

@@ -15,6 +15,8 @@ public class AssetsTableView extends TableView<Country> implements ColumnFactory
                 getColumn("stock market", CURRENCY, c -> c.assets.stockMarketValue),
                 getColumn("assets private", CURRENCY, c -> c.assets.assetsPrivate),
                 getColumn("assets corporate", CURRENCY, c -> c.assets.assetsCorporate),
-                getColumn("pension net cap.", CURRENCY, c -> c.assets.pensionNetCapital));
+                getColumn("pension net cap.", CURRENCY, c -> c.assets.pensionNetCapital),
+                getColumn("interest rates", CURRENCY, c -> c.assets.interestRates)
+                );
     }
 }

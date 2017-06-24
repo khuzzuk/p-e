@@ -122,6 +122,7 @@ class DeterminantsLoader {
         assets.assetsCorporate = Long.parseLong(rawData[assetsCorporate][column]);
         assets.stockMarketValue = Long.parseLong(rawData[stockMarketValue][column]);
         assets.m0 = Long.parseLong(rawData[m0][column]);
+        assets.interestRates = loadInt(rawData[interestRates][column]);
         return assets;
     }
 

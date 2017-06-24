@@ -64,6 +64,7 @@ class DeterminantsLoader {
         SocialIndicators indicators = new SocialIndicators();
         indicators.educatedPopulation = Integer.parseInt(rawData[educatedPopulation][column]);
         indicators.familyValues = Integer.parseInt(rawData[familyValues][column]);
+        indicators.familyAllowancesPerChild = loadInt(rawData[socFamilyAllowancesPerChild][column]);
         return indicators;
     }
 
@@ -104,6 +105,12 @@ class DeterminantsLoader {
     private static Military loadMilitary(String[][] rawData, int column) {
         Military military = new Military();
         military.equipmentCapital = Long.parseLong(rawData[militaryEquipmentCapital][column]);
+        military.soldiers = loadInt(rawData[Soldiers][column]);
+        military.soldiersSalary = loadInt(rawData[SoldiersSalary][column]);
+        military.soldiersSalary = loadInt(rawData[SoldiersSalary][column]);
+        military.nationalConscriptionStartingAge = loadInt(rawData[NationalConscriptionStartingAgez][column]);
+        military.nationalConscriptionEndingAge = loadInt(rawData[NationalConscriptionEndingAgez][column]);
+        military.militaryEquipmentFunding = loadInt(rawData[militaryEquipmentFunding][column]);
         return military;
     }
 

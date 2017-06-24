@@ -76,28 +76,36 @@ class GovernmentActionsLoader {
         switch (assimilation) {
             case 0:
                 laws.assimilation = AssimilationPolicy.NO_ASSIMILATION;
+                break;
             case 1:
                 laws.assimilation = AssimilationPolicy.ASSIMILATION;
+                break;
             case 2:
                 laws.assimilation = AssimilationPolicy.NATURALISATION;
+                break;
         }
         int migration = loadInt(rawData[lawMigrationPolicy][column]);
         switch (migration) {
             case 0:
                 laws.immigrationPolicy = MigrationPolicy.OPEN;
                 laws.emigrationPolicy = MigrationPolicy.OPEN;
+                break;
             case 1:
                 laws.immigrationPolicy = MigrationPolicy.LIMITED;
                 laws.emigrationPolicy = MigrationPolicy.LIMITED;
+                break;
             case 2:
                 laws.immigrationPolicy = MigrationPolicy.LIMITED;
                 laws.emigrationPolicy = MigrationPolicy.OPEN;
+                break;
             case 3:
                 laws.immigrationPolicy = MigrationPolicy.OPEN;
                 laws.emigrationPolicy = MigrationPolicy.LIMITED;
+                break;
             case 4:
                 laws.immigrationPolicy = MigrationPolicy.LIMITED;
                 laws.emigrationPolicy = MigrationPolicy.LIMITED;
+                break;
         }
         return laws;
     }

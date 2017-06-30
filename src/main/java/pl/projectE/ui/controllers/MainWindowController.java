@@ -4,18 +4,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
+import javafx.util.Pair;
 import lombok.NonNull;
 import pl.projectE.model.Country;
+import pl.projectE.ui.Cleaning;
 import pl.projectE.ui.CountryData;
 import pl.projectE.ui.tables.*;
-import pl.projectE.ui.Cleaning;
 
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.*;
 
 import static pl.projectE.App.bus;
-import static pl.projectE.ui.Cleaning.Type.*;
+import static pl.projectE.ui.Cleaning.Type.COMBO_BOX;
+import static pl.projectE.ui.Cleaning.Type.TABLE_VIEW;
 
 public class MainWindowController extends Formatted {
     @Cleaning(type = TABLE_VIEW)
@@ -32,7 +34,7 @@ public class MainWindowController extends Formatted {
     public MacroIndicatorsTableView macroIndicators;
     @Cleaning(type = TABLE_VIEW)
     @CountryData
-    public InfrastructureTableView infrastructure;
+    public LandTableView infrastructure;
     @Cleaning(type = TABLE_VIEW)
     @CountryData
     public CivilSecurityTableView civilSecurity;
@@ -47,8 +49,11 @@ public class MainWindowController extends Formatted {
     public TechnologyTableView technology;
     @Cleaning(type = TABLE_VIEW)
     @CountryData
-    public EnergyTableView energy;
+    public ResourcesTableView resources;
 
+    @Cleaning(type = TABLE_VIEW)
+    @CountryData
+    public EnergyTableView energy;
     @Cleaning(type = TABLE_VIEW)
     @CountryData
     public EducationTableView education;
@@ -64,6 +69,10 @@ public class MainWindowController extends Formatted {
     @Cleaning(type = TABLE_VIEW)
     @CountryData
     public MilitaryTableView military;
+    @Cleaning(type = TABLE_VIEW)
+    public PopulationTableView population;
+    @Cleaning(type = TABLE_VIEW)
+    public ProductsTableView products;
     @Cleaning(type = COMBO_BOX)
     public ComboBox<String> countriesList;
     public TaxViewController taxViewController;
@@ -84,7 +93,7 @@ public class MainWindowController extends Formatted {
     private void loadScenario(@NonNull SortedMap<String, Country> countries) {
         countriesList.getItems().addAll(countries.keySet());
         Collection<Country> countriesData = countries.values();
-        Arrays.stream(this.getClass().getDeclaredFields())
+        Arrays.stream(fields)
                 .filter(f -> f.isAnnotationPresent(CountryData.class))
                 .forEach(f -> fillCountryData(f, countriesData));
     }
@@ -107,5 +116,11 @@ public class MainWindowController extends Formatted {
 
     private void showCountry(Country country) {
         taxViewController.showCountry(country);
+        population.getItems().clear();
+        products.getItems().clear();
+        for (int x = 0; x < country.population.pyramid.length; x++) {
+            population.getItems().add(new Pair<>(x, country.population.pyramid[x]));
+        }
+        products.getItems().addAll(country.products);
     }
 }

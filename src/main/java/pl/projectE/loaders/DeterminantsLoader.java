@@ -2,37 +2,39 @@ package pl.projectE.loaders;
 
 import lombok.experimental.UtilityClass;
 import pl.projectE.model.Country;
+import pl.projectE.model.demography.Population;
 import pl.projectE.model.economy.Assets;
 import pl.projectE.model.economy.MacroIndicators;
 import pl.projectE.model.government.GovernmentFinances;
 import pl.projectE.model.government.Military;
-import pl.projectE.model.land.ImprovementsToLand;
-import pl.projectE.model.land.Infrastructure;
-import pl.projectE.model.land.InfrastructureFunding;
-import pl.projectE.model.land.InfrastructureTechnology;
+import pl.projectE.model.land.*;
+import pl.projectE.model.production.Product;
 import pl.projectE.model.social.CivilSecurity;
 import pl.projectE.model.social.HealthCare;
 import pl.projectE.model.social.SocialIndicators;
 import pl.projectE.model.social.Technology;
 
+import java.util.List;
+
 import static pl.projectE.loaders.FileVars.*;
 import static pl.projectE.loaders.LoadersUtil.loadInt;
+import static pl.projectE.loaders.LoadersUtil.loadLong;
 
 @UtilityClass
 class DeterminantsLoader {
-    static void setCountryDeterminants(String[][] rawData, Country country, int x) {
+    public static List<String> productNames;
+    static void setCountryDeterminants(String[][] rawData, Country country, int x, List<String> productNames) {
         country.assets = loadAssets(rawData, x);
         country.macroIndicators = loadMacroIndicators(rawData, x);
         country.military = loadMilitary(rawData, x);
-        country.improvementsToLand = loadImprovementsToLand(rawData, x);
-        country.infrastructure = laodInfrastructure(rawData, x);
-        country.infrastructure.infrastructureTechnology = loadInfrastructureTechnology(rawData, x);
-        country.infrastructure.infrastructureFunding = loadInfrastructureFunding(rawData, x);
+        country.land = loadLand(rawData, x);
         country.socialIndicators = loadSocialIndicators(rawData, x);
         country.civilSecurity = loadCivilSecurity(rawData, x);
         country.healthCare = loadHealthCare(rawData, x);
         country.technology = loadTechnology(rawData, x);
         country.governmentFinances = loadGovernmentFinances(rawData, x);
+        country.population = loadPopulation(rawData, x);
+        country.products = loadProducts(rawData, x, productNames);
     }
 
     private static Technology loadTechnology(String[][] rawData, int column) {
@@ -79,7 +81,7 @@ class DeterminantsLoader {
         return infrastructure;
     }
 
-    private static Infrastructure laodInfrastructure(String[][] rawData, int column) {
+    private static Infrastructure loadInfrastructure(String[][] rawData, int column) {
         Infrastructure infrastructure = new Infrastructure();
         infrastructure.roads = Integer.parseInt(rawData[roads][column]);
         infrastructure.highways = Integer.parseInt(rawData[highways][column]);
@@ -87,6 +89,8 @@ class DeterminantsLoader {
         infrastructure.airports = Integer.parseInt(rawData[airports][column]);
         infrastructure.docks = Integer.parseInt(rawData[docks][column]);
         infrastructure.vehicles = Integer.parseInt(rawData[vehicles][column]);
+        infrastructure.infrastructureTechnology = loadInfrastructureTechnology(rawData, column);
+        infrastructure.infrastructureFunding = loadInfrastructureFunding(rawData, column);
         return infrastructure;
     }
 
@@ -155,5 +159,41 @@ class DeterminantsLoader {
         infrastructure.docks = loadInt(rawData[infrastructureNavyFunding][column]);
         infrastructure.vehicles = loadInt(rawData[infrastructureVehiclesFunding][column]);
         return infrastructure;
+    }
+
+    private static Land loadLand(String[][] rawData, int column) {
+        Land land = new Land();
+        land.total = loadLong(rawData[LandTotalZ][column]);
+        land.arable = loadLong(rawData[LandArableZ][column]);
+        land.habitable = loadLong(rawData[LandHabitableZ][column]);
+        land.infrastructure = loadInfrastructure(rawData, column);
+        land.improvementsToLand = loadImprovementsToLand(rawData, column);
+        return land;
+    }
+
+    private static Population loadPopulation(String[][] rawData, int column) {
+        Population population = new Population();
+        for (int x = popPyramidFirst; x <= popPyramidLast; x++) {
+            population.pyramid[x - popPyramidFirst] = loadInt(rawData[x][column]);
+        }
+        return population;
+    }
+
+    private static Product[] loadProducts(String[][] rawData, int column, List<String> productNames) {
+        Product[] products = new Product[productNames.size()];
+        for (int x = 0; x < products.length; x++) {
+            products[x] = new Product(productNames.get(x));
+            loadProduct(x, column, rawData, products[x]);
+        }
+        return products;
+    }
+
+    private static void loadProduct(int productNum, int countryNum, String[][] rawData, Product product) {
+        product.price = loadInt(rawData[pricesStart + productNum][countryNum]);
+        product.employed = loadInt(rawData[employedStart + productNum][countryNum]);
+        product.industrialProductivity = loadInt(rawData[indEffStart + productNum][countryNum]);
+        product.actualTech = loadInt(rawData[actTechStart + productNum][countryNum]);
+        product.assets = loadLong(rawData[assetsStart + productNum][countryNum]);
+        product.endProductivity = loadInt(rawData[endProductivityStart + productNum][countryNum]);
     }
 }

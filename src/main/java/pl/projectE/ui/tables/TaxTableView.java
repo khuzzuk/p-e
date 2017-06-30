@@ -4,11 +4,9 @@ import javafx.scene.control.TableView;
 import pl.projectE.model.Country;
 import pl.projectE.ui.ColumnFactory;
 
-import java.text.DecimalFormat;
-
 import static pl.projectE.ui.ValueFormatter.PERCENT;
 
-public class TaxTableView extends TableView<Country> implements ColumnFactory {
+public class TaxTableView extends TableView<Country> implements ColumnFactory<Country> {
     public TaxTableView() {
         getColumns().addAll(getColumnWithString("Country", c -> c.name),
                 getColumn("low tax", PERCENT, c -> c.taxPolicy.pitLowMargin),

@@ -7,7 +7,7 @@ import pl.projectE.ui.ColumnFactory;
 import static pl.projectE.ui.ValueFormatter.PERCENT;
 import static pl.projectE.ui.ValueFormatter.SIMPLE;
 
-public class PensionsTableView extends TableView<Country> implements ColumnFactory {
+public class PensionsTableView extends TableView<Country> implements ColumnFactory<Country> {
     public PensionsTableView() {
         getColumns().addAll(getColumnWithString("country", c -> c.name),
                 getColumn("pensions funding", PERCENT, c -> c.pensions.governmentPensionFunding),

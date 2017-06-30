@@ -1,6 +1,5 @@
 package pl.projectE.loaders;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -9,21 +8,20 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Log4j2
-public class CountriesNamesLoader {
+public class EnumeratedNamesLoader {
 
-    private List<String> countries;
-    @NonNull
-    private FileLinker fileLinker;
+    private List<String> names;
+    private final FileLinker fileLinker;
 
     List<String> loadResource() {
-        if (countries == null) {
+        if (names == null) {
             try {
-                countries = fileLinker.readAllLines();
+                names = fileLinker.readAllLines();
             } catch (IOException e) {
                 log.error("cannot read file {}", fileLinker);
                 log.error(e);
             }
         }
-        return countries;
+        return names;
     }
 }

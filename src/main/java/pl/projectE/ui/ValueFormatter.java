@@ -26,7 +26,7 @@ public enum ValueFormatter {
             return 0;
         }
     },
-    CURRENCY(new DecimalFormat("#,##0.00")) {
+    BIG(new DecimalFormat("#,##0.00")) {
         @Override
         String forNumber(double n) {
             return levelFormat(n, getFormatter());
@@ -37,7 +37,7 @@ public enum ValueFormatter {
             return Math.round(leveledString(value));
         }
     },
-    CURRENCY_PRECISE(new DecimalFormat("#,##0.00")) {
+    PRECISE(new DecimalFormat("#,##0.00")) {
         @Override
         String forNumber(double num) {
             return getFormatter().format(num / 1000D);

@@ -1,6 +1,7 @@
 package pl.projectE.model;
 
 import lombok.RequiredArgsConstructor;
+import pl.projectE.model.demography.Population;
 import pl.projectE.model.economy.Assets;
 import pl.projectE.model.economy.Employment;
 import pl.projectE.model.economy.MacroIndicators;
@@ -8,9 +9,10 @@ import pl.projectE.model.government.Administration;
 import pl.projectE.model.government.GovernmentFinances;
 import pl.projectE.model.government.Military;
 import pl.projectE.model.government.TaxPolicy;
-import pl.projectE.model.land.ImprovementsToLand;
-import pl.projectE.model.land.Infrastructure;
+import pl.projectE.model.land.Land;
 import pl.projectE.model.production.Energy;
+import pl.projectE.model.production.Product;
+import pl.projectE.model.production.Resources;
 import pl.projectE.model.social.*;
 
 @RequiredArgsConstructor
@@ -20,8 +22,7 @@ public class Country implements Comparable<Country> {
     public Assets assets;
     public MacroIndicators macroIndicators;
     public Military military;
-    public ImprovementsToLand improvementsToLand;
-    public Infrastructure infrastructure;
+    public Land land;
     public CivilSecurity civilSecurity;
     public HealthCare healthCare;
     public Pensions pensions;
@@ -32,6 +33,9 @@ public class Country implements Comparable<Country> {
     public GovernmentFinances governmentFinances;
     public TaxPolicy taxPolicy;
     public Energy energy;
+    public Resources resources;
+    public Population population;
+    public Product[] products;
 
     @Override
     public int compareTo(Country o) {

@@ -14,7 +14,7 @@ public class ScenarioLoaderTest {
     public void setUp() throws Exception {
         putScenarioFileToContainer();
         scenarioLoader = new ScenarioLoader(new ScenarioToArrayLoader(ScenarioLinkers.SCENARIO2010),
-                new CountriesNamesLoader(new StartingCountryListLinker()));
+                new ListLinker("/countryList.dat"), new ListLinker("/productsNames.dat"));
     }
 
     @Test(groups = "integration")

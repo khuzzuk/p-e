@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public abstract class Formatted implements Initializable {
-    private Field[] fields;
+    Field[] fields;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fields = this.getClass().getDeclaredFields();

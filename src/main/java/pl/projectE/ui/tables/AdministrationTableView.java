@@ -6,7 +6,7 @@ import pl.projectE.ui.ColumnFactory;
 
 import static pl.projectE.ui.ValueFormatter.PERCENT;
 
-public class AdministrationTableView extends TableView<Country> implements ColumnFactory {
+public class AdministrationTableView extends TableView<Country> implements ColumnFactory<Country> {
     public AdministrationTableView() {
         getColumns().addAll(getColumnWithString("country", c -> c.name),
                 getColumn("officials rate", PERCENT, c -> c.administration.officialsProjectedRate),

@@ -31,6 +31,12 @@
                     <ComboBox fx:id="countriesList" onAction="#loadCountry" GridPane.rowIndex="0"/>
                     <TabPane maxHeight="Infinity" maxWidth="Infinity" GridPane.rowIndex="1">
                         <fx:include source="taxTab.fxml" fx:id="taxTab"/>
+                        <Tab closable="false" text="Pop">
+                            <PopulationTableView fx:id="population"/>
+                        </Tab>
+                        <Tab closable="false" text="market">
+                            <ProductsTableView fx:id="products"/>
+                        </Tab>
                     </TabPane>
                 </GridPane>
             </TitledPane>
@@ -52,7 +58,7 @@
                         <MacroIndicatorsTableView fx:id="macroIndicators"/>
                     </Tab>
                     <Tab closable="false" text="Infrastructure">
-                        <InfrastructureTableView fx:id="infrastructure"/>
+                        <LandTableView fx:id="infrastructure"/>
                     </Tab>
                     <Tab closable="false" text="Civil security">
                         <CivilSecurityTableView fx:id="civilSecurity"/>
@@ -82,6 +88,9 @@
                         <TabPane>
                             <Tab closable="false" text="Energy">
                                 <EnergyTableView fx:id="energy"/>
+                            </Tab>
+                            <Tab closable="false" text="Resources">
+                                <ResourcesTableView fx:id="resources"/>
                             </Tab>
                         </TabPane>
                     </Tab>

@@ -5,12 +5,12 @@ import pl.projectE.model.Country;
 import pl.projectE.model.economy.Employment;
 import pl.projectE.model.government.*;
 import pl.projectE.model.production.Energy;
+import pl.projectE.model.production.Resources;
 import pl.projectE.model.social.Education;
 import pl.projectE.model.social.Pensions;
 
 import static pl.projectE.loaders.FileVars.*;
-import static pl.projectE.loaders.LoadersUtil.loadBoolean;
-import static pl.projectE.loaders.LoadersUtil.loadInt;
+import static pl.projectE.loaders.LoadersUtil.*;
 
 @UtilityClass
 class GovernmentActionsLoader {
@@ -21,6 +21,7 @@ class GovernmentActionsLoader {
         country.pensions = loadPensions(rawData, column);
         country.education = loadEducation(rawData, column);
         country.energy = loadEnergy(rawData, column);
+        country.resources = loadResources(rawData, column);
     }
 
     private static TaxPolicy loadTaxPolicy(String[][] rawData, int column) {
@@ -167,5 +168,24 @@ class GovernmentActionsLoader {
         energy.conventional = loadInt(rawData[energyConventional][column]);
         energy.nuclear = loadInt(rawData[energyNuclear][column]);
         return energy;
+    }
+
+    private Resources loadResources(String[][] rawData, int column) {
+        Resources resources = new Resources();
+        resources.rateCoal = loadInt(rawData[indCoal][column]);
+        resources.rateCopper = loadInt(rawData[indCopper][column]);
+        resources.rateIron = loadInt(rawData[indIron][column]);
+        resources.rateUranium = loadInt(rawData[indUranium][column]);
+        resources.rateOtherMining = loadInt(rawData[indOtherMining][column]);
+        resources.ratePetroleum = loadInt(rawData[indPetroleum][column]);
+        resources.rateNaturalGas = loadInt(rawData[indNaturalGas][column]);
+        resources.productionCoal = loadInt(rawData[Coal][column]);
+        resources.productionCopper = loadInt(rawData[Copper][column]);
+        resources.productionIron = loadInt(rawData[Iron][column]);
+        resources.productionUranium = loadInt(rawData[Uranium][column]);
+        resources.productionOtherMining = loadInt(rawData[OtherMining][column]);
+        resources.productionPetroleum = loadInt(rawData[Petroleum][column]);
+        resources.productionNaturalGas = loadInt(rawData[NaturalGas][column]);
+        return resources;
     }
 }

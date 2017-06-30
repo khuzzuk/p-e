@@ -11,7 +11,7 @@ public class ScenarioLoaderManager {
     }
     private SortedMap<String, Country> loadScenario(FileLinker scenarioLinker){
         ScenarioLoader loader = new ScenarioLoader(new ScenarioToArrayLoader(scenarioLinker),
-                new CountriesNamesLoader(new StartingCountryListLinker()));
+                new ListLinker("/countryList.dat"), new ListLinker("/productsNames.dat"));
         loader.loadScenario();
         return loader.countries;
     }

@@ -4,19 +4,19 @@ import javafx.scene.control.TableView;
 import pl.projectE.model.Country;
 import pl.projectE.ui.ColumnFactory;
 
-import static pl.projectE.ui.ValueFormatter.CURRENCY;
+import static pl.projectE.ui.ValueFormatter.BIG;
 
 
-public class AssetsTableView extends TableView<Country> implements ColumnFactory {
+public class AssetsTableView extends TableView<Country> implements ColumnFactory<Country> {
     public AssetsTableView() {
         getColumns().addAll(getColumnWithString("Country", c -> c.name),
-                getColumn("M0", CURRENCY, c -> c.assets.m0),
-                getColumn("national debt", CURRENCY, c -> c.assets.nationalDebt),
-                getColumn("stock market", CURRENCY, c -> c.assets.stockMarketValue),
-                getColumn("assets private", CURRENCY, c -> c.assets.assetsPrivate),
-                getColumn("assets corporate", CURRENCY, c -> c.assets.assetsCorporate),
-                getColumn("pension net cap.", CURRENCY, c -> c.assets.pensionNetCapital),
-                getColumn("interest rates", CURRENCY, c -> c.assets.interestRates)
+                getColumn("M0", BIG, c -> c.assets.m0),
+                getColumn("national debt", BIG, c -> c.assets.nationalDebt),
+                getColumn("stock market", BIG, c -> c.assets.stockMarketValue),
+                getColumn("assets private", BIG, c -> c.assets.assetsPrivate),
+                getColumn("assets corporate", BIG, c -> c.assets.assetsCorporate),
+                getColumn("pension net cap.", BIG, c -> c.assets.pensionNetCapital),
+                getColumn("interest rates", BIG, c -> c.assets.interestRates)
                 );
     }
 }

@@ -3,8 +3,8 @@ package pl.projectE.ui
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static pl.projectE.ui.ValueFormatter.CURRENCY
-import static pl.projectE.ui.ValueFormatter.CURRENCY_PRECISE
+import static pl.projectE.ui.ValueFormatter.BIG
+import static pl.projectE.ui.ValueFormatter.PRECISE
 import static pl.projectE.ui.ValueFormatter.PERCENT
 import static pl.projectE.ui.ValueFormatter.SIMPLE
 
@@ -12,7 +12,7 @@ import static pl.projectE.ui.ValueFormatter.SIMPLE
 class ValueFormatterSpec extends Specification {
     def "format number properly"() {
         when:
-        def s = CURRENCY.forNumber(number)
+        def s = BIG.forNumber(number)
         then:
         s == format
 
@@ -29,7 +29,7 @@ class ValueFormatterSpec extends Specification {
 
     def "parse number from String"() {
         when:
-        def num = CURRENCY.from(format)
+        def num = BIG.from(format)
         then:
         num == number
 
@@ -62,8 +62,8 @@ class ValueFormatterSpec extends Specification {
 
     def "parse currency precise"() {
         when:
-        def formatted = CURRENCY_PRECISE.forNumber(number)
-        def num = CURRENCY_PRECISE.from(format)
+        def formatted = PRECISE.forNumber(number)
+        def num = PRECISE.from(format)
 
         then:
         formatted == format

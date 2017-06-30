@@ -158,6 +158,12 @@ public class FileVars {
     static final int NaturalGas = Petroleum+1;
     static final int popPyramidFirst = 157;
     static final int popPyramidLast = 232;
+    static final int pricesStart = 235;
+    static final int employedStart = 324;
+    static final int indEffStart = 413;
+    static final int actTechStart = 502;
+    static final int assetsStart = 591;
+    static final int endProductivityStart = 680;
 
     //prices
     static final int pAnimals = 235;

@@ -4,8 +4,12 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class LoadersUtil {
-    static int loadInt(String data) {
+    int loadInt(String data) {
         return Integer.parseInt(data);
+    }
+
+    long loadLong(String data) {
+        return Long.parseLong(data);
     }
 
     static boolean loadBoolean(String data) {

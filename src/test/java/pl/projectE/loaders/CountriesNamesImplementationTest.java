@@ -1,10 +1,9 @@
 package pl.projectE.loaders;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class CountriesNamesImplementationTest {
 
@@ -13,6 +12,6 @@ public class CountriesNamesImplementationTest {
         EnumeratedNamesLoader loader = new EnumeratedNamesLoader(ScenarioLinkers.SCENARIO2010);
         List<String> strings = loader.loadResource();
         int numberOfCountries = 54;
-        assertThat(strings.size()).isEqualTo(numberOfCountries);
+        Assert.assertEquals(strings.size(), numberOfCountries);
     }
 }

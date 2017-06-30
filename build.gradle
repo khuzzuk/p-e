@@ -1,0 +1,22 @@
+plugins {
+    id 'io.franzbecker.gradle-lombok' version '1.8'
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven {
+        url "https://raw.github.com/khuzzuk/MessageBus/mvn-repo/"
+    }
+}
+
+dependencies {
+    compile group: 'it.unimi.dsi', name: 'fastutil', version: '8.1.0'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
+    compile group: 'pl.khuzzuk', name: 'message-bus', version: '1.5.0'
+
+    testCompile group: 'org.testng', name: 'testng', version: '6.11'
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.1-groovy-2.4'
+}

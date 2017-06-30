@@ -1,14 +1,11 @@
 package pl.projectE.loaders;
 
-import lombok.experimental.UtilityClass;
-
-@UtilityClass
 public class LoadersUtil {
-    int loadInt(String data) {
+    static int loadInt(String data) {
         return Integer.parseInt(data);
     }
 
-    long loadLong(String data) {
+    static long loadLong(String data) {
         return Long.parseLong(data);
     }
 

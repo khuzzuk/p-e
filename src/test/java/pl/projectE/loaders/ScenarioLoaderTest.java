@@ -1,10 +1,9 @@
 package pl.projectE.loaders;
 
+import org.junit.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class ScenarioLoaderTest {
     private List<String> mockedCountriesNames;
@@ -20,7 +19,7 @@ public class ScenarioLoaderTest {
     @Test(groups = "integration")
     public void loadGameTest() throws Exception {
         scenarioLoader.loadScenario();
-        assertThat(scenarioLoader.countries).isNotNull();
+        Assert.assertNotNull(scenarioLoader.countries);
     }
 
     private FileLinker putScenarioFileToContainer(){

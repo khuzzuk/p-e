@@ -36,6 +36,7 @@ public class Country implements Comparable<Country> {
     public Resources resources;
     public Population population;
     public Product[] products;
+    public String currency;
 
     @Override
     public int compareTo(Country o) {

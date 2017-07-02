@@ -1,17 +1,15 @@
 package pl.projectE.cache;
 
-import lombok.experimental.UtilityClass;
+import lombok.Setter;
 import pl.projectE.App;
 import pl.projectE.model.Country;
+import pl.projectE.model.Scenario;
 
-import java.util.Map;
-import java.util.SortedMap;
-
-@UtilityClass
 public class CountriesCache {
-    public static SortedMap<String, Country> countries;
-    public void init() {
-        App.bus.<SortedMap<String, Country>>setReaction("scenario.show", map -> countries = map);
-        App.bus.<String, Country>setResponse("scenario.load.country", name -> countries.get(name));
+    @Setter
+    private static Scenario scenario;
+    public static void init() {
+        App.bus.setReaction("scenario.show", CountriesCache::setScenario);
+        App.bus.<String, Country>setResponse("scenario.load.country", name -> scenario.countries.get(name));
     }
 }

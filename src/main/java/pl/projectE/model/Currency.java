@@ -5,5 +5,5 @@ public class Currency {
     public String symbol;
     public int cost;
     public long m0;
-    Country controller;
+    public String controller;
 }

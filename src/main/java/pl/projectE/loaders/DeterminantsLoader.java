@@ -35,6 +35,7 @@ class DeterminantsLoader {
         country.governmentFinances = loadGovernmentFinances(rawData, x);
         country.population = loadPopulation(rawData, x);
         country.products = loadProducts(rawData, x, productNames);
+        country.currency = rawData[CurrencyNameT][x];
     }
 
     private static Technology loadTechnology(String[][] rawData, int column) {

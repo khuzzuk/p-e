@@ -7,6 +7,7 @@ import javafx.scene.control.TableView;
 import javafx.util.Pair;
 import lombok.NonNull;
 import pl.projectE.model.Country;
+import pl.projectE.model.Scenario;
 import pl.projectE.ui.Cleaning;
 import pl.projectE.ui.CountryData;
 import pl.projectE.ui.tables.*;
@@ -90,9 +91,9 @@ public class MainWindowController extends Formatted {
         bus.sendCommunicate("scenario.loader.load.2010", "scenario.show");
     }
 
-    private void loadScenario(@NonNull SortedMap<String, Country> countries) {
-        countriesList.getItems().addAll(countries.keySet());
-        Collection<Country> countriesData = countries.values();
+    private void loadScenario(@NonNull Scenario scenario) {
+        countriesList.getItems().addAll(scenario.countries.keySet());
+        Collection<Country> countriesData = scenario.countries.values();
         Arrays.stream(fields)
                 .filter(f -> f.isAnnotationPresent(CountryData.class))
                 .forEach(f -> fillCountryData(f, countriesData));

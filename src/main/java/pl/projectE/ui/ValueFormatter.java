@@ -29,12 +29,23 @@ public enum ValueFormatter {
     BIG(new DecimalFormat("#,##0.00")) {
         @Override
         String forNumber(double n) {
-            return levelFormat(n, getFormatter());
+            return levelFormat(n, getFormatter(), 0);
         }
 
         @Override
         long from(String value) {
-            return Math.round(leveledString(value));
+            return Math.round(leveledString(value, 1));
+        }
+    },
+    BIG_DOWNGRADED(new DecimalFormat("#,##0.00")) {
+        @Override
+        String forNumber(double n) {
+            return levelFormat(n, getFormatter(), 1);
+        }
+
+        @Override
+        long from(String value) {
+            return Math.round(leveledString(value, 1));
         }
     },
     PRECISE(new DecimalFormat("#,##0.00")) {
@@ -51,12 +62,12 @@ public enum ValueFormatter {
     SIMPLE(new DecimalFormat("#,##0")) {
         @Override
         String forNumber(double num) {
-            return levelFormat(num, getFormatter());
+            return levelFormat(num, getFormatter(), 0);
         }
 
         @Override
         long from(String value) {
-            return Math.round(leveledString(value));
+            return Math.round(leveledString(value, 0));
         }
     };
     private static List<String> suffixes = Arrays.asList("", " k", " mln", " bln", " tln", " qln");
@@ -67,24 +78,25 @@ public enum ValueFormatter {
 
     abstract long from(String value);
 
-    private static String levelFormat(double n, DecimalFormat formatter) {
-        for (int x = 0; x < suffixes.size(); x++) {
+    private static String levelFormat(double n, DecimalFormat formatter, int skip) {
+        for (int x = 0; x < suffixes.size() - skip; x++) {
             double a = Math.pow(10, x * 3);
             double b = a * 5000D;
             if (n < b) {
-                return formatter.format(n / a) + suffixes.get(x);
+                return formatter.format(n / a) + suffixes.get(x + skip);
             }
         }
         return formatter.format(n);
     }
 
-    private static double leveledString(String value) {
+    private static double leveledString(String value, int skip) {
         Optional<String> suffix = suffixes
                 .stream()
                 .skip(1)
                 .filter(value::contains)
                 .findFirst();
         String num = value.replace(",", "").replace(suffix.orElse(""), "");
-        return NumberUtils.toDouble(num) * Math.pow(10, suffixes.indexOf(suffix.orElse("")) * 3);
+        int divisor = Math.max(0, suffixes.indexOf(suffix.orElse("")) - 1);
+        return NumberUtils.toDouble(num) * Math.pow(10, divisor * 3);
     }
 }

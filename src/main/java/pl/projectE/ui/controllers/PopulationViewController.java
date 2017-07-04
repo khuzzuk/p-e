@@ -5,9 +5,10 @@ import pl.projectE.model.Country;
 import pl.projectE.ui.Cleaning;
 import pl.projectE.ui.Formatter;
 import pl.projectE.ui.NumberLabel;
+import pl.projectE.ui.ValueFormatter;
 
 public class PopulationViewController extends Formatted {
-    @Formatter
+    @Formatter(formatter = ValueFormatter.BIG_DOWNGRADED)
     @Cleaning
     public NumberLabel population;
 

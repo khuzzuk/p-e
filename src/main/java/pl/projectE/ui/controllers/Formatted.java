@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import pl.projectE.model.Country;
 import pl.projectE.ui.Cleaning;
 import pl.projectE.ui.Formatter;
 import pl.projectE.ui.NumberLabel;
@@ -36,7 +37,7 @@ public abstract class Formatted implements Initializable {
             value.maxValue = formatter.maxValue();
             value.formatter = formatter.formatter();
             Parent parent = value.getParent();
-            if (parent instanceof HBox) {
+            if (formatter.isChangeable() && parent instanceof HBox) {
                 VBox vBox = new VBox();
                 Button increase = new Button("▲");
                 increase.setOnAction(e -> value.change(formatter.change()));
@@ -65,4 +66,6 @@ public abstract class Formatted implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public abstract void showCountry(Country country);
 }

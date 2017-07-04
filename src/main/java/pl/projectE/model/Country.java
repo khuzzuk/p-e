@@ -15,6 +15,8 @@ import pl.projectE.model.production.Product;
 import pl.projectE.model.production.Resources;
 import pl.projectE.model.social.*;
 
+import java.util.Map;
+
 @RequiredArgsConstructor
 public class Country implements Comparable<Country> {
     public final String name;
@@ -37,6 +39,7 @@ public class Country implements Comparable<Country> {
     public Population population;
     public Product[] products;
     public String currency;
+    public Map<String, Map<String, Integer>> productionMatrix;
 
     @Override
     public int compareTo(Country o) {

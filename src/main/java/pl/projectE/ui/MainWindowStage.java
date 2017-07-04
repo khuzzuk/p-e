@@ -1,14 +1,14 @@
 package pl.projectE.ui;
 
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
 import pl.projectE.App;
+import pl.projectE.ui.controllers.Formatted;
 import pl.projectE.ui.controllers.MainWindowController;
+import pl.projectE.ui.controllers.PopulationViewController;
 import pl.projectE.ui.controllers.TaxViewController;
 
 import java.io.IOException;
@@ -16,19 +16,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainWindowStage extends Stage {
-    private Map<Class<?>, Initializable> controllers;
+    private Map<Class<? extends Formatted>, Formatted> controllers;
 
     public MainWindowStage() {
         super(StageStyle.DECORATED);
         initModality(Modality.WINDOW_MODAL);
 
-        TaxViewController taxViewController = new TaxViewController();
         MainWindowController mainWindowController = new MainWindowController();
-        mainWindowController.taxViewController = taxViewController;
 
         controllers = new HashMap<>();
         controllers.put(MainWindowController.class, mainWindowController);
-        controllers.put(TaxViewController.class, taxViewController);
+        controllers.put(TaxViewController.class, new TaxViewController());
+        controllers.put(PopulationViewController.class, new PopulationViewController());
+        mainWindowController.controllers = controllers;
     }
 
     public void init(Stage parent) {

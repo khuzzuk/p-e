@@ -1,0 +1,13 @@
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import pl.projectE.ui.NumberLabel?>
+<?import javafx.scene.control.Label?>
+<Tab closable="false" text="Pop" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.projectE.ui.controllers.PopulationViewController">
+    <GridPane hgap="5" vgap="5">
+        <Label text="Total"/>
+        <HBox GridPane.columnIndex="1" >
+            <NumberLabel fx:id="population" styleClass="int-label"/>
+        </HBox>
+    </GridPane>
+</Tab>

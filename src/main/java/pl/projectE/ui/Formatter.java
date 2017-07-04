@@ -10,9 +10,11 @@ import java.lang.annotation.Target;
 public @interface Formatter {
     int minValue() default 0;
 
-    int maxValue();
+    int maxValue() default Integer.MAX_VALUE;
 
     int change() default 1;
 
     ValueFormatter formatter() default ValueFormatter.BIG;
+
+    boolean isChangeable() default false;
 }

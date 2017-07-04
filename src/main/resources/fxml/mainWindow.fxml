@@ -37,6 +37,7 @@
                         <Tab closable="false" text="market">
                             <ProductsTableView fx:id="products"/>
                         </Tab>
+                        <fx:include source="populationTab.fxml" fx:id="populationTab"/>
                     </TabPane>
                 </GridPane>
             </TitledPane>

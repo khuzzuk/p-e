@@ -6,74 +6,67 @@ import pl.projectE.ui.Formatter;
 import pl.projectE.ui.NumberLabel;
 import pl.projectE.ui.ValueFormatter;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 public class TaxViewController extends Formatted {
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel payroll;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel cit;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel redundancy;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel vat;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel salesTax;
-    @Formatter(maxValue = 950, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 950, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel tariffs;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel landOwnership;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel improvementsToLand;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel movableProperty;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel inheritance;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel capitalGains;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel financialTransactions;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel tolls;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel crimeFees;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel pitLow;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel pitMed;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel pitHigh;
-    @Formatter(maxValue = 10000, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 10000, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel marginLow;
-    @Formatter(maxValue = 10000, change = 5, formatter = ValueFormatter.PERCENT)
+    @Formatter(maxValue = 10000, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel marginMed;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        super.initialize(location, resources);
-    }
-
-    void showCountry(Country country) {
+    public void showCountry(Country country) {
         pitLow.setText(country.taxPolicy.pitLowMargin);
         pitMed.setText(country.taxPolicy.pitMediumMargin);
         pitHigh.setText(country.taxPolicy.pitHighMargin);

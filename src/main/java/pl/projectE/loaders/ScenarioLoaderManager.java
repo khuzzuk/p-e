@@ -7,8 +7,10 @@ public class ScenarioLoaderManager {
         return loadScenario(ScenarioLinkers.SCENARIO2010);
     }
     private Scenario loadScenario(FileLinker scenarioLinker){
-        ScenarioLoader loader = new ScenarioLoader(new ScenarioToArrayLoader(scenarioLinker),
-                new ListLinker("/countryList.dat"), new ListLinker("/productsNames.dat"));
+        ScenarioLoader loader = new ScenarioLoader(new DataToArrayLoader(scenarioLinker),
+                new ListLinker("/countryList.dat"),
+                new ListLinker("/productsNames.dat"),
+                new ListLinker("/ProdMatrix.csv"));
         return loader.loadScenario();
     }
 }

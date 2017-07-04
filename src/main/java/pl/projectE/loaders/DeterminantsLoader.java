@@ -1,5 +1,7 @@
 package pl.projectE.loaders;
 
+import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import lombok.experimental.UtilityClass;
 import pl.projectE.model.Country;
 import pl.projectE.model.demography.Population;
@@ -14,7 +16,9 @@ import pl.projectE.model.social.HealthCare;
 import pl.projectE.model.social.SocialIndicators;
 import pl.projectE.model.social.Technology;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static pl.projectE.loaders.FileVars.*;
 import static pl.projectE.loaders.LoadersUtil.loadInt;
@@ -22,8 +26,7 @@ import static pl.projectE.loaders.LoadersUtil.loadLong;
 
 @UtilityClass
 class DeterminantsLoader {
-    public static List<String> productNames;
-    static void setCountryDeterminants(String[][] rawData, Country country, int x, List<String> productNames) {
+    static void setCountryDeterminants(String[][] rawData, String[][] prodData, Country country, int x, List<String> productNames) {
         country.assets = loadAssets(rawData, x);
         country.macroIndicators = loadMacroIndicators(rawData, x);
         country.military = loadMilitary(rawData, x);
@@ -36,6 +39,7 @@ class DeterminantsLoader {
         country.population = loadPopulation(rawData, x);
         country.products = loadProducts(rawData, x, productNames);
         country.currency = rawData[CurrencyNameT][x];
+        fillResources(country.products, prodData, country);
     }
 
     private static Technology loadTechnology(String[][] rawData, int column) {
@@ -196,5 +200,30 @@ class DeterminantsLoader {
         product.actualTech = loadInt(rawData[actTechStart + productNum][countryNum]);
         product.assets = loadLong(rawData[assetsStart + productNum][countryNum]);
         product.endProductivity = loadInt(rawData[endProductivityStart + productNum][countryNum]);
+    }
+
+    private static void fillResources(Product[] products, String[][] prodData, Country country) {
+        Map<String, Map<String, Integer>> productionMatrix = new HashMap<>();
+        for (int x = 0; x < products.length; x++) {
+            Map<String, Integer> productMatrix = new HashMap<>();
+            Object2IntMap<Product> resources = new Object2IntArrayMap<>();
+            for (int y = 0; y < products.length; y++) {
+                int value = loadInt(prodData[x + 1][y]);
+                if (value > 0) {
+                    resources.put(products[y], value);
+                    productMatrix.put(products[y].name, value);
+                }
+            }
+            productionMatrix.put(products[x].name, productMatrix);
+            products[x].productionEfficiency = loadInt(prodData[x + 1][products.length]);
+            products[x].consumption = loadInt(prodData[x + 1][products.length + 1]);
+            products[x].basicConsumption = loadInt(prodData[x + 1][products.length + 2]);
+            products[x].army = loadInt(prodData[x + 1][products.length + 3]);
+            products[x].administration = loadInt(prodData[x + 1][products.length + 4]);
+            products[x].technologyWeight = loadInt(prodData[x + 1][products.length + 5]);
+            products[x].priceWeight = loadInt(prodData[x + 1][products.length + 6]);
+            products[x].resources = resources;
+        }
+        country.productionMatrix = productionMatrix;
     }
 }

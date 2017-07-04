@@ -76,17 +76,19 @@ public class MainWindowController extends Formatted {
     public ProductsTableView products;
     @Cleaning(type = COMBO_BOX)
     public ComboBox<String> countriesList;
-    public TaxViewController taxViewController;
+    public Map<Class<? extends Formatted>, ? extends Formatted> controllers;
     public Tab taxTab;
+    public Tab populationTab;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
         bus.setGuiReaction("scenario.show", this::loadScenario);
-        bus.setGuiReaction("scenario.show.country", this::showCountry);
+        bus.<Country>setGuiReaction("scenario.show.country",
+                country -> controllers.values().forEach(value -> value.showCountry(country)));
     }
 
-     public void get2010Scenario() {
+    public void get2010Scenario() {
         clear();
         bus.sendCommunicate("scenario.loader.load.2010", "scenario.show");
     }
@@ -115,8 +117,7 @@ public class MainWindowController extends Formatted {
                         selectedItem));
     }
 
-    private void showCountry(Country country) {
-        taxViewController.showCountry(country);
+    public void showCountry(Country country) {
         population.getItems().clear();
         products.getItems().clear();
         for (int x = 0; x < country.population.pyramid.length; x++) {

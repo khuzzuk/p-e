@@ -13,7 +13,7 @@ public class PopulationTableView extends TableView<Pair<Integer, Integer>> imple
         TableColumn<Pair<Integer, Integer>, String> age = new TableColumn<>("age");
         age.setCellValueFactory(p ->
                 new SimpleStringProperty(p.getValue().getKey().toString()));
-        TableColumn<Pair<Integer, Integer>, String> pop = new TableColumn<>("population");
+        TableColumn<Pair<Integer, Integer>, String> pop = new TableColumn<>("totalPopulation");
         pop.setCellValueFactory(p ->
                 new SimpleStringProperty(p.getValue().getValue().toString()));
 

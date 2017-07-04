@@ -4,12 +4,10 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class ScenarioToArrayLoader {
+public class DataToArrayLoader {
     @NonNull
     private FileLinker scenario;
     private String[][] data;

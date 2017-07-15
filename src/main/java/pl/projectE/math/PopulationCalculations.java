@@ -4,6 +4,7 @@ import pl.projectE.model.Country;
 import pl.projectE.model.demography.Population;
 
 import static pl.projectE.math.MathUtils.divideUpscale;
+import static pl.projectE.math.MathUtils.multiplyPercentPositive;
 import static pl.projectE.math.MathUtils.sum;
 
 public class PopulationCalculations {
@@ -34,8 +35,9 @@ public class PopulationCalculations {
 
     public static int laborForceRatio(Country country) {
         int underWorkingAge = country.population.underWorkingAge;
-        int laborForce = country.population.laborForce / 1000;
+        int laborForce = country.population.laborForce;
         int unemploymentBenefitsStrength = country.employment.unemploymentBenefitsStrength;
-        return divideUpscale(underWorkingAge, laborForce) * (1 + unemploymentBenefitsStrength);
+        int childrenRatio = divideUpscale(underWorkingAge, laborForce);
+        return multiplyPercentPositive(childrenRatio, unemploymentBenefitsStrength);
     }
 }

@@ -25,4 +25,12 @@ class MathUtils {
             return (int) (((float) base) / (((float) divider) / 1000f));
         }
     }
+
+    static int multiplyPercent(int first, int second) {
+        return first * second / 1000;
+    }
+
+    static int multiplyPercentPositive(int first, int second) {
+        return multiplyPercent(first, second + 1000);
+    }
 }

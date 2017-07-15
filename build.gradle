@@ -2,6 +2,7 @@ plugins {
     id 'io.franzbecker.gradle-lombok' version '1.8'
     id 'java'
 }
+apply plugin: 'groovy'
 
 repositories {
     mavenCentral()
@@ -11,10 +12,28 @@ repositories {
     }
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs = []
+        }
+        groovy {
+            srcDirs = ['src/main/groovy', 'src/main/java']
+        }
+    }
+
+    test {
+        groovy {
+            srcDirs = ['src/test/java']
+        }
+    }
+}
+
 dependencies {
     compile group: 'it.unimi.dsi', name: 'fastutil', version: '8.1.0'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
     compile group: 'pl.khuzzuk', name: 'message-bus', version: '1.5.0'
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.12'
 
     testCompile group: 'org.testng', name: 'testng', version: '6.11'
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'

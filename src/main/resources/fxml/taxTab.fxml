@@ -8,9 +8,6 @@
         <Label text="PIT"/>
         <Label text="Tax rate" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
         <Label text="Margin" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-        <Label text="Low" GridPane.rowIndex="2"/>
-        <Label text="Medium" GridPane.rowIndex="3"/>
-        <Label text="High" GridPane.rowIndex="4"/>
         <HBox GridPane.columnIndex="1" GridPane.rowIndex="2">
             <NumberLabel fx:id="pitLow" styleClass="int-label"/>
         </HBox>
@@ -26,59 +23,45 @@
         <HBox GridPane.columnIndex="2" GridPane.rowIndex="3">
             <NumberLabel fx:id="marginMed" styleClass="int-label"/>
         </HBox>
-        <Label text="Payroll" GridPane.rowIndex="5"/>
         <HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
             <NumberLabel fx:id="payroll" styleClass="int-label"/>
         </HBox>
-        <Label text="CIT" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
         <HBox GridPane.columnIndex="1" GridPane.rowIndex="6">
             <NumberLabel fx:id="cit" styleClass="int-label"/>
         </HBox>
-        <Label text="Redundancy" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
         <HBox GridPane.columnIndex="4" GridPane.rowIndex="1">
             <NumberLabel fx:id="redundancy" styleClass="int-label"/>
         </HBox>
-        <Label text="VAT" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
         <HBox GridPane.columnIndex="4" GridPane.rowIndex="2">
             <NumberLabel fx:id="vat" styleClass="int-label"/>
         </HBox>
-        <Label text="Sales tax" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
         <HBox GridPane.columnIndex="4" GridPane.rowIndex="3">
             <NumberLabel fx:id="salesTax" styleClass="int-label"/>
         </HBox>
-        <Label text="Tariffs" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
         <HBox GridPane.columnIndex="4" GridPane.rowIndex="4">
             <NumberLabel fx:id="tariffs" styleClass="int-label"/>
         </HBox>
-        <Label text="From land ownership" GridPane.columnIndex="3" GridPane.rowIndex="5"/>
         <HBox GridPane.columnIndex="4" GridPane.rowIndex="5">
             <NumberLabel fx:id="landOwnership" styleClass="int-label"/>
         </HBox>
-        <Label text="Improvements to land" GridPane.columnIndex="3" GridPane.rowIndex="6"/>
         <HBox GridPane.columnIndex="4" GridPane.rowIndex="6">
             <NumberLabel fx:id="improvementsToLand" styleClass="int-label"/>
         </HBox>
-        <Label text="From movable property" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
         <HBox GridPane.columnIndex="6" GridPane.rowIndex="1">
             <NumberLabel fx:id="movableProperty" styleClass="int-label"/>
         </HBox>
-        <Label text="Inheritance" GridPane.columnIndex="5" GridPane.rowIndex="2"/>
         <HBox GridPane.columnIndex="6" GridPane.rowIndex="2">
             <NumberLabel fx:id="inheritance" styleClass="int-label"/>
         </HBox>
-        <Label text="Capital gains" GridPane.columnIndex="5" GridPane.rowIndex="3"/>
         <HBox GridPane.columnIndex="6" GridPane.rowIndex="3">
             <NumberLabel fx:id="capitalGains" styleClass="int-label"/>
         </HBox>
-        <Label text="Financial transactions" GridPane.columnIndex="5" GridPane.rowIndex="4"/>
         <HBox GridPane.columnIndex="6" GridPane.rowIndex="4">
             <NumberLabel fx:id="financialTransactions" styleClass="int-label"/>
         </HBox>
-        <Label text="Tolls" GridPane.columnIndex="5" GridPane.rowIndex="5"/>
         <HBox GridPane.columnIndex="6" GridPane.rowIndex="5">
             <NumberLabel fx:id="tolls" styleClass="int-label"/>
         </HBox>
-        <Label text="Crime fees" GridPane.columnIndex="5" GridPane.rowIndex="6"/>
         <HBox GridPane.columnIndex="6" GridPane.rowIndex="6">
             <NumberLabel fx:id="crimeFees" styleClass="int-label"/>
         </HBox>

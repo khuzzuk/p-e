@@ -1,8 +1,10 @@
 package pl.projectE.ui.controllers;
 
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import pl.projectE.model.Country;
@@ -23,13 +25,13 @@ public abstract class Formatted implements Initializable {
         formatFields();
     }
 
-    void formatFields() {
+    private void formatFields() {
         Arrays.stream(fields)
                 .filter(f -> f.isAnnotationPresent(Formatter.class))
                 .filter(f -> f.getType().equals(NumberLabel.class))
                 .forEach(this::setFormatting);
     }
-    void setFormatting(Field field) {
+    private void setFormatting(Field field) {
         Formatter formatter = field.getAnnotation(Formatter.class);
         try {
             NumberLabel value = (NumberLabel) field.get(this);
@@ -37,16 +39,23 @@ public abstract class Formatted implements Initializable {
             value.maxValue = formatter.maxValue();
             value.formatter = formatter.formatter();
             Parent parent = value.getParent();
-            if (formatter.isChangeable() && parent instanceof HBox) {
-                VBox vBox = new VBox();
-                Button increase = new Button("▲");
-                increase.setOnAction(e -> value.change(formatter.change()));
-                increase.getStyleClass().add("int-label-change");
-                Button decrease = new Button("▼");
-                decrease.setOnAction(e -> value.change(-formatter.change()));
-                decrease.getStyleClass().add("int-label-change");
-                vBox.getChildren().addAll(increase, decrease);
-                ((HBox) parent).getChildren().add(vBox);
+            if (parent instanceof HBox) {
+                HBox hBox = (HBox) parent;
+                hBox.setPadding(new Insets(5));
+                if (formatter.isChangeable()) {
+                    VBox vBox = new VBox();
+                    Button increase = new Button("▲");
+                    increase.setOnAction(e -> value.change(formatter.change()));
+                    increase.getStyleClass().add("int-label-change");
+                    Button decrease = new Button("▼");
+                    decrease.setOnAction(e -> value.change(-formatter.change()));
+                    decrease.getStyleClass().add("int-label-change");
+                    vBox.getChildren().addAll(increase, decrease);
+                    hBox.getChildren().add(0, vBox);
+                }
+                Label label = new Label(formatter.label());
+                label.getStyleClass().add("int-label");
+                hBox.getChildren().add(label);
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();

@@ -5,9 +5,20 @@
 <?import javafx.scene.control.Label?>
 <Tab closable="false" text="Pop" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.projectE.ui.controllers.PopulationViewController">
     <GridPane hgap="5" vgap="5">
-        <Label text="Total"/>
-        <HBox GridPane.columnIndex="1" >
+        <HBox>
             <NumberLabel fx:id="population" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="1">
+            <NumberLabel fx:id="laborForce" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="2">
+            <NumberLabel fx:id="retired" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="3">
+            <NumberLabel fx:id="children" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="4">
+            <NumberLabel fx:id="laborForceRatio" styleClass="int-label"/>
         </HBox>
     </GridPane>
 </Tab>

@@ -12,7 +12,7 @@ public class Product {
     public int actualTech;
     public long assets;
     public int endProductivity;
-    public transient Object2IntMap<Product> resources;
+    public Object2IntMap<Product> resources;
     public int productionEfficiency;
     public int consumption;
     public int basicConsumption;
@@ -20,4 +20,5 @@ public class Product {
     public int administration;
     public int technologyWeight;
     public int priceWeight;
+    public transient int actualProduction;
 }

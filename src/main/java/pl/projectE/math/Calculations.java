@@ -1,9 +1,8 @@
 package pl.projectE.math;
 
-import pl.projectE.model.demography.Population;
 import pl.projectE.model.government.TaxPolicy;
 
-import static pl.projectE.math.MathUtils.*;
+import static pl.projectE.math.MathUtils.average;
 
 public class Calculations {
     public static int averageTaxRate(TaxPolicy tp) {
@@ -14,7 +13,4 @@ public class Calculations {
                 tp.capitalGains + tp.financialTransactions + tp.tolls + tp.crimeFees);
     }
 
-    public static int totalPopulation(Population population) {
-        return sum(population.pyramid);
-    }
 }

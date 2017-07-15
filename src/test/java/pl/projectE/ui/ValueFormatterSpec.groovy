@@ -3,10 +3,10 @@ package pl.projectE.ui
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static pl.projectE.ui.ValueFormatter.BIG
-import static pl.projectE.ui.ValueFormatter.PRECISE
-import static pl.projectE.ui.ValueFormatter.PERCENT
-import static pl.projectE.ui.ValueFormatter.SIMPLE
+import static ValueFormatter.BIG
+import static ValueFormatter.PRECISE
+import static ValueFormatter.PERCENT
+import static ValueFormatter.SIMPLE
 
 @Unroll
 class ValueFormatterSpec extends Specification {

@@ -7,61 +7,61 @@ import pl.projectE.ui.NumberLabel;
 import pl.projectE.ui.ValueFormatter;
 
 public class TaxViewController extends Formatted {
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "payroll", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel payroll;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "cit", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel cit;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "redundancy", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel redundancy;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "vat", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel vat;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "sales tax", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel salesTax;
-    @Formatter(maxValue = 950, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "tariffs", maxValue = 950, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel tariffs;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "land ownership", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel landOwnership;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "improvements to the land", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel improvementsToLand;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "movable property", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel movableProperty;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "inheritance", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel inheritance;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "capital gains", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel capitalGains;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "financial transactions", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel financialTransactions;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "tolls", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel tolls;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "crime fees", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel crimeFees;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "low", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel pitLow;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "med", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel pitMed;
-    @Formatter(maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "high", maxValue = 500, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel pitHigh;
-    @Formatter(maxValue = 10000, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "low", maxValue = 10000, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel marginLow;
-    @Formatter(maxValue = 10000, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
+    @Formatter(label = "med", maxValue = 10000, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel marginMed;
 

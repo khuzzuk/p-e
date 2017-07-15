@@ -1,20 +1,16 @@
-package pl.projectE.ui;
+package pl.projectE.ui
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.math.NumberUtils;
+import groovy.transform.CompileStatic
+import org.apache.commons.lang3.math.NumberUtils
 
-import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.text.DecimalFormat
 
-@RequiredArgsConstructor
-public enum ValueFormatter {
+@CompileStatic
+enum ValueFormatter {
     PERCENT(new DecimalFormat("#0.0")) {
         @Override
         String forNumber(double num) {
-            return getFormatter().format(num / 10) + "%";
+            return formatter.format(num / 10) + "%";
         }
 
         @Override
@@ -29,18 +25,18 @@ public enum ValueFormatter {
     BIG(new DecimalFormat("#,##0.00")) {
         @Override
         String forNumber(double n) {
-            return levelFormat(n, getFormatter(), 0);
+            return levelFormat(n);
         }
 
         @Override
         long from(String value) {
-            return Math.round(leveledString(value, 1));
+            return Math.round(leveledString(value));
         }
     },
     BIG_DOWNGRADED(new DecimalFormat("#,##0.00")) {
         @Override
         String forNumber(double n) {
-            return levelFormat(n, getFormatter(), 1);
+            return levelFormat(n, 1);
         }
 
         @Override
@@ -51,7 +47,7 @@ public enum ValueFormatter {
     PRECISE(new DecimalFormat("#,##0.00")) {
         @Override
         String forNumber(double num) {
-            return getFormatter().format(num / 1000D);
+            return formatter.format(num / 1000D);
         }
 
         @Override
@@ -62,23 +58,27 @@ public enum ValueFormatter {
     SIMPLE(new DecimalFormat("#,##0")) {
         @Override
         String forNumber(double num) {
-            return levelFormat(num, getFormatter(), 0);
+            return levelFormat(num);
         }
 
         @Override
         long from(String value) {
-            return Math.round(leveledString(value, 0));
+            return Math.round(leveledString(value));
         }
-    };
+    }
+
     private static List<String> suffixes = Arrays.asList("", " k", " mln", " bln", " tln", " qln");
-    @Getter
-    private final DecimalFormat formatter;
+    protected DecimalFormat formatter;
+
+    ValueFormatter(DecimalFormat formatter) {
+        this.formatter = formatter
+    }
 
     abstract String forNumber(double num);
 
     abstract long from(String value);
 
-    private static String levelFormat(double n, DecimalFormat formatter, int skip) {
+    protected String levelFormat(double n, int skip = 0) {
         for (int x = 0; x < suffixes.size() - skip; x++) {
             double a = Math.pow(10, x * 3);
             double b = a * 5000D;
@@ -89,14 +89,14 @@ public enum ValueFormatter {
         return formatter.format(n);
     }
 
-    private static double leveledString(String value, int skip) {
+    private static double leveledString(String value, int skip = 0) {
         Optional<String> suffix = suffixes
                 .stream()
                 .skip(1)
-                .filter(value::contains)
-                .findFirst();
-        String num = value.replace(",", "").replace(suffix.orElse(""), "");
-        int divisor = Math.max(0, suffixes.indexOf(suffix.orElse("")) - 1);
-        return NumberUtils.toDouble(num) * Math.pow(10, divisor * 3);
+                .filter({value.contains(it)})
+                .findFirst()
+        def num = value.replace(",", "").replace(suffix.orElse(""), "")
+        int divisor = Math.max(0, suffixes.indexOf(suffix.orElse("")) - skip)
+        return NumberUtils.toDouble(num) * Math.pow(10, divisor * 3)
     }
 }

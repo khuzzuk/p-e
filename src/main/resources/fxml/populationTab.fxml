@@ -18,7 +18,10 @@
             <NumberLabel fx:id="children" styleClass="int-label"/>
         </HBox>
         <HBox GridPane.rowIndex="4">
-            <NumberLabel fx:id="laborForceRatio" styleClass="int-label"/>
+            <NumberLabel fx:id="nonLaborForceRatio" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="5">
+            <NumberLabel fx:id="activeWorkForce" styleClass="int-label"/>
         </HBox>
     </GridPane>
 </Tab>

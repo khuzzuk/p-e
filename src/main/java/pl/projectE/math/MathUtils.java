@@ -26,11 +26,28 @@ class MathUtils {
         }
     }
 
-    static int multiplyPercent(int first, int second) {
+    static int multiplyPercents(int first, int second) {
         return first * second / 1000;
     }
 
-    static int multiplyPercentPositive(int first, int second) {
-        return multiplyPercent(first, second + 1000);
+    static int multiplyPercentsPositive(int first, int second) {
+        return multiplyPercents(first, second + 1000);
+    }
+
+    static int getByPercent(int number, int percent) {
+        if (number > 10000) {
+            return (number / 1000) * percent;
+        }
+        return (number * percent) / 1000;
+    }
+
+    static int getByPercentReversed(int number, int percent) {
+        if (percent > 1000) {
+            throw new IllegalArgumentException("percent is more than 100%");
+        }
+        if (number > 10000) {
+            return (number / 1000) * (1000 - percent);
+        }
+        return (number * (1000 - percent)) / 1000;
     }
 }

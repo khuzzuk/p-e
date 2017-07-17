@@ -22,5 +22,8 @@ public class Population {
     public transient int underWorkingAge;
 
     @DataType(type = PERCENT)
-    public transient int laborForceRatio;
+    public transient int nonLaborForceRatio;
+
+    @DataType(type = BIG_DOWNGRADED)
+    public transient int activeWorkForce;
 }

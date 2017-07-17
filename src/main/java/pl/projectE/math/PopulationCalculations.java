@@ -3,41 +3,44 @@ package pl.projectE.math;
 import pl.projectE.model.Country;
 import pl.projectE.model.demography.Population;
 
-import static pl.projectE.math.MathUtils.divideUpscale;
-import static pl.projectE.math.MathUtils.multiplyPercentPositive;
-import static pl.projectE.math.MathUtils.sum;
+import static pl.projectE.math.MathUtils.*;
 
-public class PopulationCalculations {
-    public static void refreshPopulation(Country country) {
+class PopulationCalculations {
+    static void refreshPopulation(Country country) {
         Population population = country.population;
         population.totalPopulation = totalPopulation(population);
         population.laborForce = popLaborForce(country);
         population.retired = popRetired(country);
         population.underWorkingAge = popUnderWorkingAge(country);
-        population.laborForceRatio = laborForceRatio(country);
+        population.nonLaborForceRatio = nonLaborForceRatio(country);
+        population.activeWorkForce = activeLaborForce(country);
     }
 
-    public static int totalPopulation(Population population) {
+    private static int totalPopulation(Population population) {
         return sum(population.pyramid);
     }
 
-    public static int popLaborForce(Country country) {
+    private static int popLaborForce(Country country) {
         return sum(country.population.pyramid, country.employment.workingAge, country.pensions.retirementAge);
     }
 
-    public static int popRetired(Country country) {
+    private static int popRetired(Country country) {
         return sum(country.population.pyramid, country.pensions.retirementAge, country.population.pyramid.length);
     }
 
-    public static int popUnderWorkingAge(Country country) {
+    private static int popUnderWorkingAge(Country country) {
         return sum(country.population.pyramid, 0, country.employment.workingAge);
     }
 
-    public static int laborForceRatio(Country country) {
+    private static int nonLaborForceRatio(Country country) {
         int underWorkingAge = country.population.underWorkingAge;
         int laborForce = country.population.laborForce;
         int unemploymentBenefitsStrength = country.employment.unemploymentBenefitsStrength;
         int childrenRatio = divideUpscale(underWorkingAge, laborForce);
-        return multiplyPercentPositive(childrenRatio, unemploymentBenefitsStrength);
+        return multiplyPercentsPositive(childrenRatio, unemploymentBenefitsStrength / 2);
+    }
+
+    private static int activeLaborForce(Country country) {
+        return getByPercentReversed(country.population.laborForce, country.population.nonLaborForceRatio);
     }
 }

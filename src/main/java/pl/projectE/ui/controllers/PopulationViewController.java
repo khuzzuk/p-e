@@ -19,9 +19,12 @@ public class PopulationViewController extends Formatted {
     @Formatter(label = "under working age", formatter = ValueFormatter.BIG_DOWNGRADED)
     @Cleaning
     public NumberLabel children;
-    @Formatter(label = "labor force ratio", formatter = ValueFormatter.PERCENT)
+    @Formatter(label = "non labor force ratio", formatter = ValueFormatter.PERCENT)
     @Cleaning
-    public NumberLabel laborForceRatio;
+    public NumberLabel nonLaborForceRatio;
+    @Formatter(label = "active work force", formatter = ValueFormatter.BIG_DOWNGRADED)
+    @Cleaning
+    public NumberLabel activeWorkForce;
 
     @Override
     public void showCountry(Country country) {
@@ -29,6 +32,7 @@ public class PopulationViewController extends Formatted {
         laborForce.setText(country.population.laborForce);
         retired.setText(country.population.retired);
         children.setText(country.population.underWorkingAge);
-        laborForceRatio.setText(country.population.laborForceRatio);
+        nonLaborForceRatio.setText(country.population.nonLaborForceRatio);
+        activeWorkForce.setText(country.population.activeWorkForce);
     }
 }

@@ -12,5 +12,4 @@ public class Calculations {
                 average(tp.fromLandOwnership + tp.improvementsToLand + tp.movableProperty + tp.inheritance +
                 tp.capitalGains + tp.financialTransactions + tp.tolls + tp.crimeFees);
     }
-
 }

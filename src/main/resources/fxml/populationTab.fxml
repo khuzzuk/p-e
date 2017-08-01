@@ -23,5 +23,8 @@
         <HBox GridPane.rowIndex="5">
             <NumberLabel fx:id="activeWorkForce" styleClass="int-label"/>
         </HBox>
+        <HBox GridPane.rowIndex="6">
+            <NumberLabel fx:id="popPerSqKm" styleClass="int-label"/>
+        </HBox>
     </GridPane>
 </Tab>

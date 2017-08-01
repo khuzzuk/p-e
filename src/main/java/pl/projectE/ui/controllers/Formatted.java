@@ -15,6 +15,7 @@ import pl.projectE.ui.NumberLabel;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public abstract class Formatted implements Initializable {

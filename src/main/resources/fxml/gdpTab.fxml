@@ -1,0 +1,24 @@
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import pl.projectE.ui.NumberLabel?>
+<?import javafx.scene.control.Label?>
+<Tab closable="false" text="Gdp" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.projectE.ui.controllers.GdpController">
+    <GridPane hgap="5" vgap="5">
+        <HBox>
+            <NumberLabel fx:id="gdp" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="1">
+            <NumberLabel fx:id="gdp$" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="2">
+            <NumberLabel fx:id="gdpPerCapita" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="3">
+            <NumberLabel fx:id="gdpPerCapita$" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="4">
+            <NumberLabel fx:id="propensityToConsume" styleClass="int-label"/>
+        </HBox>
+    </GridPane>
+</Tab>

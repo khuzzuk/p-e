@@ -18,6 +18,22 @@ class MathUtils {
         return sum(args) / args.length;
     }
 
+    static int calculatePercentSmall(int part, int base) {
+        return part * 1000 / base;
+    }
+
+    static int calculatePercentSmall(int part, long base) {
+        return (int) (part * 1000 / base);
+    }
+
+    static int calculatePercentBig(int part, int base) {
+        return part / (base / 1000);
+    }
+
+    static int calculatePercentBig(int part, long base) {
+        return (int) (part / (base / 1000));
+    }
+
     static int divideUpscale(int base, int divider) {
         if (divider > 1000) {
             return base / (divider / 1000);
@@ -26,8 +42,32 @@ class MathUtils {
         }
     }
 
+    static int divideUpscale(long base, long divider) {
+        if (divider > 1000) {
+            return (int) (base / (divider / 1000));
+        } else {
+            return (int) (((float) base) / (((float) divider) / 1000f));
+        }
+    }
+
     static int multiplyPercents(int first, int second) {
         return first * second / 1000;
+    }
+
+    static long multiplyPercents(long first, int second) {
+        return first * second / 1000;
+    }
+
+    static long multiplyDownscaledWithPercent(long downscaled, int percent) {
+        return downscaled * percent;
+    }
+
+    static long multiplyDownscaledWithUpscaled(long downscaled, long upscaled) {
+        return downscaled * upscaled;
+    }
+
+    static int multiplyDownscaledWithUpscaled(int downscaled, int upscaled) {
+        return downscaled * upscaled;
     }
 
     static int multiplyPercentsPositive(int first, int second) {
@@ -49,5 +89,17 @@ class MathUtils {
             return (number / 1000) * (1000 - percent);
         }
         return (number * (1000 - percent)) / 1000;
+    }
+
+    static long multiplyWithUpscaled(long base, long upScaled) {
+        return base / 1000 * upScaled;
+    }
+
+    static long divideWithUpScaled(long base, long upScaled) {
+        return base * 1000 / upScaled;
+    }
+
+    static long upscale(int num) {
+        return ((long) num) * 1000L;
     }
 }

@@ -2,12 +2,17 @@ package pl.projectE.model.production;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import lombok.RequiredArgsConstructor;
+import pl.projectE.math.DataType;
+import pl.projectE.model.Refresh;
+import pl.projectE.ui.ValueFormatter;
 
 @RequiredArgsConstructor
+@Refresh(sequence = 0)
 public class Product {
     public final String name;
     public int price;
-    public int employed;
+    @DataType(type = ValueFormatter.BIG)
+    public long employed;
     public int industrialProductivity;
     public int actualTech;
     public long assets;
@@ -20,5 +25,5 @@ public class Product {
     public int administration;
     public int technologyWeight;
     public int priceWeight;
-    public transient int actualProduction;
+    public transient long actualProduction;
 }

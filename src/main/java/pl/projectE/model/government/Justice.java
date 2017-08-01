@@ -6,4 +6,5 @@ public class Justice {
     public int courtSupplyingJudge;
     public int courtJudgeSalary;
     public int policeEquipmentFunding;
+    public transient long spending;
 }

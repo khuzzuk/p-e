@@ -41,6 +41,8 @@ public class Country implements Comparable<Country> {
     public String currency;
     public Map<String, Map<String, Integer>> productionMatrix;
 
+    public transient Currency currencyData;
+
     @Override
     public int compareTo(Country o) {
         return name.compareTo(o.name);

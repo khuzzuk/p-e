@@ -6,7 +6,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
 import javafx.util.Pair;
 import lombok.NonNull;
-import pl.projectE.math.RefreshFacade;
+import pl.projectE.math.Calculator;
 import pl.projectE.model.Country;
 import pl.projectE.model.Scenario;
 import pl.projectE.ui.Cleaning;
@@ -80,6 +80,9 @@ public class MainWindowController extends Formatted {
     public Map<Class<? extends Formatted>, ? extends Formatted> controllers;
     public Tab taxTab;
     public Tab populationTab;
+    public Tab gdpTab;
+    public Tab administrationTab;
+    public Tab employmentTab;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -87,7 +90,7 @@ public class MainWindowController extends Formatted {
         bus.setGuiReaction("scenario.show", this::loadScenario);
         bus.<Country>setGuiReaction("scenario.show.country",
                 country -> {
-                    RefreshFacade.refreshCountry(country);
+                    Calculator.calculate(country);
                     controllers.values().forEach(value -> value.showCountry(country));
                 });
     }

@@ -31,13 +31,16 @@
                     <ComboBox fx:id="countriesList" onAction="#loadCountry" GridPane.rowIndex="0"/>
                     <TabPane maxHeight="Infinity" maxWidth="Infinity" GridPane.rowIndex="1">
                         <fx:include source="taxTab.fxml" fx:id="taxTab"/>
-                        <Tab closable="false" text="Pop">
+                        <fx:include source="administrationTab.fxml" fx:id="administrationTab"/>
+                        <Tab closable="false" text="dem">
                             <PopulationTableView fx:id="population"/>
                         </Tab>
                         <Tab closable="false" text="market">
                             <ProductsTableView fx:id="products"/>
                         </Tab>
                         <fx:include source="populationTab.fxml" fx:id="populationTab"/>
+                        <fx:include source="gdpTab.fxml" fx:id="gdpTab"/>
+                        <fx:include source="employmentTab.fxml" fx:id="employmentTab"/>
                     </TabPane>
                 </GridPane>
             </TitledPane>

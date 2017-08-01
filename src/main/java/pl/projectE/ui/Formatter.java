@@ -10,9 +10,9 @@ import java.lang.annotation.Target;
 public @interface Formatter {
     String label();
 
-    int minValue() default 0;
+    long minValue() default 0;
 
-    int maxValue() default Integer.MAX_VALUE;
+    long maxValue() default Long.MAX_VALUE;
 
     int change() default 1;
 

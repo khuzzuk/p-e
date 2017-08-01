@@ -1,0 +1,38 @@
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import pl.projectE.ui.NumberLabel?>
+<Tab closable="false" text="Empl." xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.projectE.ui.controllers.EmploymentTabController">
+    <GridPane hgap="5" vgap="5">
+        <HBox>
+            <NumberLabel fx:id="unemploymentBenefits" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="1">
+            <NumberLabel fx:id="unemploymentBenefitsDuration" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="2">
+            <NumberLabel fx:id="unemploymentBenefitsStrength" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="3">
+            <NumberLabel fx:id="workingAge" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="4">
+            <NumberLabel fx:id="minimumSalary" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="0" GridPane.columnIndex="1">
+            <NumberLabel fx:id="employed" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="1" GridPane.columnIndex="1">
+            <NumberLabel fx:id="unemployed" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="2" GridPane.columnIndex="1">
+            <NumberLabel fx:id="unemploymentRate" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="3" GridPane.columnIndex="1">
+            <NumberLabel fx:id="employmentRate" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="4" GridPane.columnIndex="1">
+            <NumberLabel fx:id="spending" styleClass="int-label"/>
+        </HBox>
+    </GridPane>
+</Tab>

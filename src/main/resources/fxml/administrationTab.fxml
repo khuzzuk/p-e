@@ -1,0 +1,26 @@
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import pl.projectE.ui.NumberLabel?>
+<Tab closable="false" text="Admin." xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.projectE.ui.controllers.AdministrationController">
+    <GridPane hgap="5" vgap="5">
+        <HBox>
+            <NumberLabel fx:id="officialsProjectedRate" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="1">
+            <NumberLabel fx:id="officialsTotal" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="2">
+            <NumberLabel fx:id="officialsSalaryRate" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="3">
+            <NumberLabel fx:id="officialsSalary" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="4">
+            <NumberLabel fx:id="spending" styleClass="int-label"/>
+        </HBox>
+        <HBox GridPane.rowIndex="5">
+            <NumberLabel fx:id="administrationCost" styleClass="int-label"/>
+        </HBox>
+    </GridPane>
+</Tab>

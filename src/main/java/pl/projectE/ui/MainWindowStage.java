@@ -6,10 +6,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.projectE.App;
-import pl.projectE.ui.controllers.Formatted;
-import pl.projectE.ui.controllers.MainWindowController;
-import pl.projectE.ui.controllers.PopulationViewController;
-import pl.projectE.ui.controllers.TaxViewController;
+import pl.projectE.ui.controllers.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -28,6 +25,9 @@ public class MainWindowStage extends Stage {
         controllers.put(MainWindowController.class, mainWindowController);
         controllers.put(TaxViewController.class, new TaxViewController());
         controllers.put(PopulationViewController.class, new PopulationViewController());
+        controllers.put(GdpController.class, new GdpController());
+        controllers.put(AdministrationController.class, new AdministrationController());
+        controllers.put(EmploymentTabController.class, new EmploymentTabController());
         mainWindowController.controllers = controllers;
     }
 

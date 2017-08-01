@@ -25,6 +25,9 @@ public class PopulationViewController extends Formatted {
     @Formatter(label = "active work force", formatter = ValueFormatter.BIG_DOWNGRADED)
     @Cleaning
     public NumberLabel activeWorkForce;
+    @Formatter(label = "pop per sq km", formatter = ValueFormatter.SIMPLE)
+    @Cleaning
+    public NumberLabel popPerSqKm;
 
     @Override
     public void showCountry(Country country) {
@@ -34,5 +37,6 @@ public class PopulationViewController extends Formatted {
         children.setText(country.population.underWorkingAge);
         nonLaborForceRatio.setText(country.population.nonLaborForceRatio);
         activeWorkForce.setText(country.population.activeWorkForce);
+        popPerSqKm.setText(country.population.popPerSqKm);
     }
 }

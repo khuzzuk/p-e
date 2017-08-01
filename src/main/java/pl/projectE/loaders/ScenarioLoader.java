@@ -1,6 +1,8 @@
 package pl.projectE.loaders;
 
 import lombok.RequiredArgsConstructor;
+import pl.projectE.math.AdministrationCalculations;
+import pl.projectE.math.HealthCareCalculations;
 import pl.projectE.model.Country;
 import pl.projectE.model.Scenario;
 
@@ -20,11 +22,15 @@ public class ScenarioLoader {
     public Scenario loadScenario() {
         countriesNames = new EnumeratedNamesLoader(countriesNamesData).loadResource();
         productNames = new EnumeratedNamesLoader(productsData).loadResource();
+        constantLoader(productNames);
         String[][] rawData = rawDataLoader.loadResource();
         String[][] prodData = new DataToArrayLoader(prodMatrixData).loadResource();
         Scenario scenario = new Scenario();
         scenario.countries = parseScenario(rawData, prodData, prepareCountries(countriesNames), countriesNames, productNames);
         scenario.currencies = CurrencyLoader.loadCurrencies(rawData);
+        scenario.countries.values().forEach(country ->
+                country.currencyData = scenario.currencies.values().stream().filter(c ->
+                        c.name.equals(country.currency)).findAny().orElse(null));
         return scenario;
     }
 
@@ -42,5 +48,10 @@ public class ScenarioLoader {
             GovernmentActionsLoader.loadGovernmentActions(country, rawData, x);
         }
         return countries;
+    }
+
+    private void constantLoader(List<String> productNames) {
+        AdministrationCalculations.ADMIN_PRICE_TABLE_NUMBER = productNames.indexOf("Administration");
+        HealthCareCalculations.HEALTH_CARE_COST_TABLE_NUMBER = productNames.indexOf("Healthcare");
     }
 }

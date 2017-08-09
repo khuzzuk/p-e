@@ -41,4 +41,12 @@ class EmploymentCalculations {
         long c = multiplyWithUpscaled(averageSalary, b);
         return c * (benefitsDuration / 5);
     }
+
+    static long payrollTaxation(Country country) {
+        return multiplyPercents(country.macroIndicators.netWages, country.taxPolicy.payroll);
+    }
+
+    static long administrationNeed(Country country) {
+        return country.employment.spending / country.administration.administrationCost;
+    }
 }

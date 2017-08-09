@@ -22,4 +22,6 @@ public class Employment {
     public transient int employmentRate;
     @DataType(type = ValueFormatter.BIG)
     public transient long spending;
+    @DataType(type = ValueFormatter.SIMPLE)
+    public transient long administrationNeed;
 }

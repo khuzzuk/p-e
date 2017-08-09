@@ -34,5 +34,8 @@
         <HBox GridPane.rowIndex="4" GridPane.columnIndex="1">
             <NumberLabel fx:id="spending" styleClass="int-label"/>
         </HBox>
+        <HBox GridPane.rowIndex="5" GridPane.columnIndex="1">
+            <NumberLabel fx:id="administrationNeeds" styleClass="int-label"/>
+        </HBox>
     </GridPane>
 </Tab>

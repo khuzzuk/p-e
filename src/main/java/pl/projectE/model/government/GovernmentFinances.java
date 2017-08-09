@@ -9,4 +9,7 @@ public class GovernmentFinances {
 
     @DataType(type = ValueFormatter.BIG)
     public transient long totalSpending;
+
+    @DataType(type = ValueFormatter.BIG)
+    public transient long payrollTaxation;
 }

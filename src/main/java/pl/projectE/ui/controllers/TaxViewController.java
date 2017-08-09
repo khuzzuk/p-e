@@ -64,6 +64,15 @@ public class TaxViewController extends Formatted {
     @Formatter(label = "med", maxValue = 10000, change = 5, formatter = ValueFormatter.PERCENT, isChangeable = true)
     @Cleaning
     public NumberLabel marginMed;
+    @Cleaning
+    @Formatter(label = "receipts", formatter = ValueFormatter.BIG)
+    public NumberLabel totalReceipts;
+    @Cleaning
+    @Formatter(label = "payroll", formatter = ValueFormatter.BIG)
+    public NumberLabel payrollTaxation;
+    @Cleaning
+    @Formatter(label = "spending", formatter = ValueFormatter.BIG)
+    public NumberLabel totalSpending;
 
     @Override
     public void showCountry(Country country) {
@@ -86,5 +95,10 @@ public class TaxViewController extends Formatted {
         redundancy.setText(country.taxPolicy.redundancy);
         cit.setText(country.taxPolicy.cit);
         payroll.setText(country.taxPolicy.payroll);
+
+        totalReceipts.setText(country.governmentFinances.totalReceipts);
+        payrollTaxation.setText(country.governmentFinances.payrollTaxation);
+
+        totalSpending.setText(country.governmentFinances.totalSpending);
     }
 }

@@ -7,6 +7,12 @@ class MathUtils {
         return n;
     }
 
+    static long sum(long... array) {
+        long n = 0;
+        for (long i : array) n += i;
+        return n;
+    }
+
     static int sum(int[] array, int start, int end) {
         int n = 0;
         for (int i = start; i < end; i++) n += array[i];

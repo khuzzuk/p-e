@@ -29,6 +29,8 @@ public class EmploymentTabController extends Formatted {
     public NumberLabel employmentRate;
     @Formatter(label = "spending", formatter = ValueFormatter.BIG)
     public NumberLabel spending;
+    @Formatter(label = "admin. needs", formatter = ValueFormatter.SIMPLE)
+    public NumberLabel administrationNeeds;
 
     @Override
     public void showCountry(Country country) {
@@ -42,6 +44,7 @@ public class EmploymentTabController extends Formatted {
         unemployed.setText(employment.unemployed);
         unemploymentRate.setText(employment.unemploymentRate);
         employmentRate.setText(employment.employmentRate);
+        administrationNeeds.setText(employment.administrationNeed);
         spending.setText(employment.spending);
     }
 }

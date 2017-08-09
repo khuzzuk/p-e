@@ -5,6 +5,7 @@ import pl.projectE.model.demography.Population;
 import pl.projectE.model.economy.Employment;
 import pl.projectE.model.economy.MacroIndicators;
 import pl.projectE.model.government.Administration;
+import pl.projectE.model.government.GovernmentFinances;
 import pl.projectE.model.government.Justice;
 import pl.projectE.model.production.Product;
 import pl.projectE.model.social.HealthCare;
@@ -17,6 +18,7 @@ public class Calculator {
         Justice justice = administration.justice;
         HealthCare healthCare = country.healthCare;
         Employment employment = country.employment;
+        GovernmentFinances governmentFinances = country.governmentFinances;
 
         for (Product p : country.products) {
             p.actualProduction = p.employed * p.endProductivity;
@@ -52,5 +54,10 @@ public class Calculator {
         employment.unemploymentRate = EmploymentCalculations.unemploymentRate(country);
         employment.employmentRate = EmploymentCalculations.employmentRate(country);
         employment.spending = EmploymentCalculations.spending(country);
+        employment.administrationNeed = EmploymentCalculations.administrationNeed(country);
+
+        //tax income
+        governmentFinances.payrollTaxation = EmploymentCalculations.payrollTaxation(country);
+        governmentFinances.totalSpending = GovernmentFinancesCalculations.totalSpending(country);
     }
 }
